@@ -1,0 +1,630 @@
+date,region,route_id,origin_city,destination_city,carrier,fuel_used_l,fuel_price_per_l,delay_hr,delay_reason,shipment_volume_tons,on_time_delivery,temperature_controlled,distance_km
+2024-11-01,South,R001,Miami,Atlanta,MoveWest,697,1.48,1.1,None,52,Yes,Yes,264
+2024-11-01,North,R005,Chicago,Milwaukee,NorthernHaul,915,1.47,1.0,None,66,Yes,No,454
+2024-11-01,North,R001,Minneapolis,Detroit,QuickShip,725,1.37,0.7,None,57,Yes,Yes,335
+2024-11-02,East,R002,New York,Boston,QuickShip,695,1.36,0.4,None,65,Yes,No,473
+2024-11-02,West,R004,Seattle,Portland,QuickShip,777,1.46,0.8,None,63,Yes,Yes,694
+2024-11-02,North,R002,Chicago,Milwaukee,QuickShip,768,1.41,1.0,None,59,Yes,No,845
+2024-11-02,North,R003,Minneapolis,Detroit,MoveWest,935,1.44,0.0,None,57,Yes,No,423
+2024-11-03,South,R004,New Orleans,Memphis,NorthernHaul,784,1.61,0.2,None,51,Yes,Yes,568
+2024-11-04,North,R004,Chicago,Milwaukee,NorthernHaul,792,1.41,1.2,None,52,Yes,No,808
+2024-11-04,East,R001,New York,Boston,GoSouth,670,1.62,0.4,None,70,Yes,No,496
+2024-11-04,East,R002,New York,Boston,QuickShip,802,1.4,0.1,None,49,Yes,No,633
+2024-11-05,South,R005,New Orleans,Memphis,GoSouth,704,1.6,1.4,None,53,Yes,No,606
+2024-11-06,West,R004,Seattle,Portland,FastFreight,666,1.49,0.9,None,55,Yes,No,647
+2024-11-06,East,R004,New York,Boston,NorthernHaul,719,1.42,1.0,None,69,Yes,No,504
+2024-11-06,South,R005,New Orleans,Memphis,NorthernHaul,800,1.65,1.5,None,53,Yes,No,836
+2024-11-06,East,R001,New York,Boston,NorthernHaul,915,1.47,0.4,None,60,Yes,Yes,767
+2024-11-07,South,R002,New Orleans,Memphis,NorthernHaul,703,1.38,0.8,None,67,Yes,No,462
+2024-11-07,West,R005,Los Angeles,San Francisco,GoSouth,679,1.59,1.0,None,54,Yes,No,509
+2024-11-07,West,R001,San Diego,Las Vegas,TransEast,698,1.39,0.1,None,52,Yes,No,777
+2024-11-07,South,R003,Houston,Dallas,FastFreight,906,1.62,0.0,None,71,Yes,No,331
+2024-11-08,West,R002,San Diego,Las Vegas,TransEast,724,1.61,0.5,None,64,Yes,Yes,576
+2024-11-08,West,R002,San Diego,Las Vegas,FastFreight,744,1.42,1.2,None,49,Yes,Yes,732
+2024-11-08,South,R002,Houston,Dallas,FastFreight,933,1.52,0.5,None,74,Yes,Yes,503
+2024-11-09,West,R005,San Diego,Las Vegas,NorthernHaul,675,1.61,1.2,None,46,Yes,No,688
+2024-11-09,West,R002,Seattle,Portland,NorthernHaul,764,1.57,0.6,None,71,Yes,No,278
+2024-11-09,South,R003,Houston,Dallas,NorthernHaul,665,1.48,1.0,None,45,Yes,No,350
+2024-11-10,North,R005,Toronto,Montreal,TransEast,884,1.64,1.1,None,47,Yes,Yes,398
+2024-11-11,North,R005,Chicago,Milwaukee,FastFreight,924,1.44,0.6,None,59,Yes,No,832
+2024-11-11,West,R005,San Diego,Las Vegas,QuickShip,750,1.44,0.2,None,70,Yes,Yes,588
+2024-11-11,West,R004,Los Angeles,San Francisco,QuickShip,695,1.51,0.1,None,54,Yes,No,294
+2024-11-11,East,R003,New York,Washington,TransEast,850,1.51,0.9,None,64,Yes,No,331
+2024-11-12,West,R002,Seattle,Portland,FastFreight,800,1.54,1.0,None,50,Yes,No,318
+2024-11-12,North,R003,Chicago,Milwaukee,GoSouth,731,1.49,1.0,None,58,Yes,No,737
+2024-11-12,East,R001,Boston,Philadelphia,FastFreight,879,1.65,0.9,None,52,Yes,No,305
+2024-11-12,West,R002,Los Angeles,San Francisco,TransEast,795,1.53,1.2,None,66,Yes,Yes,564
+2024-11-13,North,R005,Toronto,Montreal,MoveWest,899,1.35,1.2,None,57,Yes,No,274
+2024-11-13,West,R004,San Diego,Las Vegas,QuickShip,895,1.53,7.7,Mechanical,72,No,No,314
+2024-11-13,West,R003,Los Angeles,San Francisco,QuickShip,916,1.36,4.2,Weather,58,No,Yes,552
+2024-11-14,North,R005,Chicago,Milwaukee,MoveWest,690,1.53,1.3,None,63,Yes,No,387
+2024-11-14,East,R002,New York,Boston,MoveWest,783,1.52,1.4,None,63,Yes,No,842
+2024-11-15,East,R002,Boston,Philadelphia,MoveWest,782,1.65,7.1,Traffic,46,No,No,654
+2024-11-15,East,R001,New York,Boston,QuickShip,878,1.42,1.4,None,63,Yes,Yes,482
+2024-11-16,West,R005,Los Angeles,San Francisco,FastFreight,717,1.38,5.6,Traffic,55,No,No,656
+2024-11-16,East,R005,Boston,Philadelphia,GoSouth,768,1.37,0.9,None,61,Yes,No,753
+2024-11-16,West,R005,Seattle,Portland,NorthernHaul,668,1.38,1.3,None,64,Yes,No,763
+2024-11-17,East,R002,Boston,Philadelphia,MoveWest,913,1.41,0.2,None,70,Yes,Yes,466
+2024-11-17,North,R004,Minneapolis,Detroit,TransEast,756,1.39,0.9,None,69,Yes,No,508
+2024-11-17,East,R002,New York,Boston,TransEast,775,1.41,1.3,None,71,Yes,Yes,582
+2024-11-17,East,R001,Boston,Philadelphia,FastFreight,752,1.59,0.2,None,55,Yes,No,782
+2024-11-18,West,R004,San Diego,Las Vegas,MoveWest,715,1.47,0.2,None,59,Yes,No,654
+2024-11-18,West,R002,San Diego,Las Vegas,GoSouth,756,1.41,0.0,None,56,Yes,No,478
+2024-11-18,East,R003,New York,Washington,FastFreight,829,1.48,0.9,None,61,Yes,No,576
+2024-11-19,East,R005,New York,Washington,GoSouth,657,1.53,0.2,None,63,Yes,No,275
+2024-11-19,West,R004,Seattle,Portland,GoSouth,889,1.5,0.3,None,72,Yes,No,625
+2024-11-20,East,R004,Boston,Philadelphia,FastFreight,802,1.42,0.8,None,49,Yes,No,725
+2024-11-21,South,R005,New Orleans,Memphis,GoSouth,733,1.38,0.2,None,68,Yes,No,776
+2024-11-21,East,R001,Boston,Philadelphia,QuickShip,664,1.48,0.1,None,63,Yes,No,755
+2024-11-22,North,R005,Minneapolis,Detroit,FastFreight,892,1.63,1.1,None,61,Yes,Yes,515
+2024-11-23,North,R001,Minneapolis,Detroit,NorthernHaul,877,1.44,1.4,None,67,Yes,No,699
+2024-11-23,East,R003,New York,Washington,QuickShip,867,1.4,0.4,None,60,Yes,No,410
+2024-11-24,North,R002,Minneapolis,Detroit,TransEast,775,1.43,3.9,Loading_Delay,58,No,No,351
+2024-11-25,South,R002,Miami,Atlanta,TransEast,879,1.44,1.2,None,56,Yes,No,735
+2024-11-25,South,R004,New Orleans,Memphis,TransEast,835,1.59,3.2,Traffic,50,No,No,373
+2024-11-25,South,R003,Houston,Dallas,NorthernHaul,917,1.36,1.0,None,62,Yes,Yes,754
+2024-11-26,North,R005,Toronto,Montreal,GoSouth,913,1.37,4.8,Weather,57,No,No,258
+2024-11-26,South,R004,Miami,Atlanta,MoveWest,835,1.46,0.0,None,74,Yes,No,335
+2024-11-26,East,R003,New York,Boston,NorthernHaul,754,1.59,1.0,None,73,Yes,Yes,284
+2024-11-27,North,R001,Minneapolis,Detroit,FastFreight,907,1.53,1.2,None,64,Yes,No,516
+2024-11-27,East,R005,Boston,Philadelphia,NorthernHaul,882,1.4,0.3,None,63,Yes,No,518
+2024-11-28,North,R003,Minneapolis,Detroit,FastFreight,660,1.38,0.8,None,56,Yes,No,405
+2024-11-28,South,R001,Miami,Atlanta,FastFreight,836,1.53,1.5,None,70,Yes,No,436
+2024-11-29,West,R003,San Diego,Las Vegas,GoSouth,791,1.58,0.5,None,70,Yes,No,436
+2024-11-29,East,R001,New York,Boston,NorthernHaul,803,1.57,1.3,None,72,Yes,Yes,613
+2024-11-29,East,R002,New York,Boston,NorthernHaul,773,1.56,0.9,None,73,Yes,No,642
+2024-11-30,West,R004,Seattle,Portland,QuickShip,799,1.55,0.0,None,59,Yes,No,510
+2024-11-30,West,R001,San Diego,Las Vegas,GoSouth,787,1.4,0.9,None,45,Yes,Yes,567
+2024-12-01,North,R005,Toronto,Montreal,MoveWest,833,1.54,3.9,Loading_Delay,75,No,Yes,522
+2024-12-02,East,R002,Boston,Philadelphia,QuickShip,829,1.61,0.9,None,54,Yes,Yes,759
+2024-12-02,East,R003,Boston,Philadelphia,GoSouth,878,1.54,1.2,None,54,Yes,No,424
+2024-12-02,West,R001,Los Angeles,San Francisco,QuickShip,845,1.42,0.9,None,55,Yes,No,267
+2024-12-02,North,R004,Toronto,Montreal,FastFreight,779,1.43,1.0,None,61,Yes,Yes,737
+2024-12-03,East,R003,New York,Boston,QuickShip,656,1.4,0.4,None,65,Yes,Yes,822
+2024-12-03,East,R002,New York,Boston,MoveWest,845,1.45,0.8,None,67,Yes,No,574
+2024-12-03,West,R004,San Diego,Las Vegas,QuickShip,774,1.45,3.0,Traffic,64,No,No,555
+2024-12-03,East,R002,New York,Boston,NorthernHaul,766,1.45,0.2,None,69,Yes,Yes,537
+2024-12-04,North,R003,Chicago,Milwaukee,NorthernHaul,697,1.63,0.1,None,63,Yes,No,808
+2024-12-05,South,R001,Houston,Dallas,GoSouth,895,1.51,7.5,Weather,62,No,No,696
+2024-12-05,West,R005,Seattle,Portland,GoSouth,788,1.47,0.1,None,48,Yes,No,610
+2024-12-06,West,R003,San Diego,Las Vegas,NorthernHaul,808,1.44,0.7,None,70,Yes,No,593
+2024-12-07,East,R002,Boston,Philadelphia,NorthernHaul,885,1.48,0.8,None,73,Yes,No,594
+2024-12-08,West,R003,Los Angeles,San Francisco,NorthernHaul,805,1.61,0.6,None,65,Yes,Yes,459
+2024-12-09,East,R005,New York,Boston,QuickShip,943,1.45,0.9,None,72,Yes,No,368
+2024-12-09,West,R001,Los Angeles,San Francisco,MoveWest,729,1.47,0.6,None,57,Yes,No,841
+2024-12-09,North,R001,Toronto,Montreal,FastFreight,918,1.6,4.4,Traffic,73,No,No,762
+2024-12-10,East,R005,New York,Boston,FastFreight,788,1.59,1.2,None,68,Yes,Yes,271
+2024-12-10,South,R005,Houston,Dallas,TransEast,798,1.65,0.5,None,65,Yes,No,826
+2024-12-11,South,R002,Houston,Dallas,GoSouth,675,1.64,6.4,Traffic,66,No,No,479
+2024-12-11,South,R005,New Orleans,Memphis,NorthernHaul,787,1.48,6.2,Loading_Delay,67,No,Yes,686
+2024-12-11,South,R001,New Orleans,Memphis,FastFreight,870,1.54,1.4,None,53,Yes,No,774
+2024-12-12,South,R004,Miami,Atlanta,GoSouth,933,1.43,0.1,None,74,Yes,Yes,740
+2024-12-13,East,R004,New York,Washington,FastFreight,684,1.62,1.0,None,72,Yes,No,717
+2024-12-13,North,R002,Minneapolis,Detroit,NorthernHaul,813,1.63,0.2,None,52,Yes,No,457
+2024-12-13,East,R002,New York,Boston,GoSouth,887,1.63,1.2,None,66,Yes,Yes,404
+2024-12-14,South,R004,Houston,Dallas,TransEast,687,1.52,0.6,None,46,Yes,Yes,375
+2024-12-14,West,R005,Los Angeles,San Francisco,GoSouth,883,1.54,3.5,Mechanical,46,No,No,466
+2024-12-14,West,R003,San Diego,Las Vegas,MoveWest,661,1.39,1.2,None,72,Yes,Yes,337
+2024-12-15,North,R003,Minneapolis,Detroit,QuickShip,944,1.35,7.5,Loading_Delay,46,No,No,770
+2024-12-15,West,R002,Seattle,Portland,GoSouth,676,1.37,1.5,None,69,Yes,Yes,755
+2024-12-15,South,R004,New Orleans,Memphis,QuickShip,775,1.61,0.7,None,49,Yes,No,735
+2024-12-15,North,R003,Chicago,Milwaukee,QuickShip,947,1.39,0.6,None,49,Yes,No,329
+2024-12-16,East,R004,Boston,Philadelphia,FastFreight,882,1.54,0.1,None,65,Yes,No,623
+2024-12-16,East,R005,New York,Washington,NorthernHaul,909,1.49,0.8,None,73,Yes,No,475
+2024-12-17,East,R003,New York,Washington,MoveWest,685,1.41,1.2,None,63,Yes,No,437
+2024-12-17,South,R001,Miami,Atlanta,QuickShip,893,1.51,1.1,None,51,Yes,No,359
+2024-12-18,East,R005,New York,Washington,TransEast,842,1.44,0.6,None,50,Yes,No,422
+2024-12-18,South,R002,New Orleans,Memphis,MoveWest,946,1.49,0.6,None,59,Yes,No,674
+2024-12-18,North,R001,Toronto,Montreal,GoSouth,914,1.39,1.0,None,51,Yes,No,714
+2024-12-18,West,R003,Los Angeles,San Francisco,TransEast,814,1.63,1.2,None,71,Yes,No,439
+2024-12-19,South,R001,New Orleans,Memphis,GoSouth,659,1.39,0.6,None,66,Yes,No,839
+2024-12-19,West,R004,Seattle,Portland,GoSouth,689,1.45,1.2,None,66,Yes,No,642
+2024-12-20,West,R005,Los Angeles,San Francisco,QuickShip,860,1.35,1.3,None,45,Yes,Yes,328
+2024-12-20,South,R003,New Orleans,Memphis,TransEast,841,1.62,0.1,None,74,Yes,No,346
+2024-12-21,North,R005,Minneapolis,Detroit,NorthernHaul,758,1.37,0.1,None,47,Yes,No,660
+2024-12-21,South,R003,Houston,Dallas,QuickShip,889,1.35,0.6,None,46,Yes,No,452
+2024-12-21,North,R002,Minneapolis,Detroit,QuickShip,698,1.35,0.5,None,66,Yes,No,387
+2024-12-21,North,R001,Minneapolis,Detroit,GoSouth,931,1.53,0.7,None,68,Yes,No,516
+2024-12-22,North,R005,Minneapolis,Detroit,GoSouth,823,1.52,5.6,Weather,60,No,No,763
+2024-12-22,North,R002,Chicago,Milwaukee,NorthernHaul,678,1.38,0.1,None,56,Yes,No,431
+2024-12-23,East,R001,New York,Washington,QuickShip,718,1.43,0.8,None,55,Yes,Yes,359
+2024-12-23,North,R002,Minneapolis,Detroit,MoveWest,727,1.54,1.3,None,49,Yes,No,478
+2024-12-24,West,R003,Seattle,Portland,NorthernHaul,795,1.64,1.5,None,50,Yes,No,427
+2024-12-24,East,R002,New York,Boston,TransEast,694,1.48,1.3,None,50,Yes,Yes,703
+2024-12-25,East,R002,Boston,Philadelphia,FastFreight,849,1.54,0.9,None,59,Yes,No,648
+2024-12-26,West,R002,Los Angeles,San Francisco,QuickShip,762,1.42,0.7,None,75,Yes,No,658
+2024-12-27,South,R005,Miami,Atlanta,NorthernHaul,846,1.63,0.8,None,74,Yes,No,715
+2024-12-27,South,R001,Miami,Atlanta,MoveWest,755,1.59,1.0,None,71,Yes,No,748
+2024-12-28,West,R001,Los Angeles,San Francisco,MoveWest,832,1.4,0.3,None,46,Yes,Yes,403
+2024-12-28,South,R004,New Orleans,Memphis,QuickShip,850,1.44,0.1,None,50,Yes,No,329
+2024-12-28,South,R003,Houston,Dallas,QuickShip,725,1.54,0.2,None,51,Yes,Yes,379
+2024-12-28,East,R002,New York,Washington,TransEast,815,1.56,0.9,None,55,Yes,No,413
+2024-12-29,North,R004,Chicago,Milwaukee,GoSouth,922,1.49,1.0,None,54,Yes,Yes,483
+2024-12-30,South,R005,New Orleans,Memphis,QuickShip,889,1.55,1.3,None,55,Yes,No,573
+2024-12-30,West,R002,Los Angeles,San Francisco,QuickShip,861,1.37,0.4,None,53,Yes,No,488
+2024-12-30,North,R004,Chicago,Milwaukee,GoSouth,823,1.55,4.1,Weather,61,No,No,701
+2024-12-31,North,R005,Minneapolis,Detroit,NorthernHaul,788,1.37,5.2,Mechanical,57,No,No,342
+2024-12-31,South,R002,Houston,Dallas,TransEast,763,1.38,6.4,Traffic,56,No,No,437
+2024-12-31,West,R003,Seattle,Portland,NorthernHaul,858,1.38,2.6,Loading_Delay,69,No,No,650
+2025-01-01,East,R004,New York,Washington,MoveWest,829,1.45,1.5,None,71,Yes,No,452
+2025-01-02,West,R003,San Diego,Las Vegas,GoSouth,790,1.49,1.1,None,72,Yes,No,694
+2025-01-03,North,R005,Minneapolis,Detroit,TransEast,673,1.59,0.8,None,45,Yes,No,488
+2025-01-04,West,R004,San Diego,Las Vegas,QuickShip,877,1.62,0.5,None,64,Yes,No,577
+2025-01-04,South,R001,New Orleans,Memphis,GoSouth,750,1.49,1.3,None,74,Yes,No,411
+2025-01-05,West,R002,Los Angeles,San Francisco,TransEast,664,1.36,0.9,None,49,Yes,No,424
+2025-01-06,North,R001,Chicago,Milwaukee,MoveWest,902,1.55,1.5,None,52,Yes,No,538
+2025-01-06,South,R003,Miami,Atlanta,GoSouth,874,1.59,1.5,None,66,Yes,Yes,454
+2025-01-06,West,R004,Seattle,Portland,MoveWest,822,1.6,2.8,Mechanical,46,No,No,299
+2025-01-07,North,R003,Minneapolis,Detroit,GoSouth,754,1.4,0.7,None,66,Yes,No,435
+2025-01-07,West,R004,Seattle,Portland,NorthernHaul,678,1.63,0.3,None,55,Yes,No,339
+2025-01-07,North,R005,Minneapolis,Detroit,QuickShip,786,1.6,1.3,None,53,Yes,No,435
+2025-01-07,South,R001,New Orleans,Memphis,TransEast,913,1.63,7.5,Mechanical,74,No,Yes,729
+2025-01-08,North,R005,Minneapolis,Detroit,FastFreight,801,1.65,0.1,None,47,Yes,No,371
+2025-01-08,South,R005,Miami,Atlanta,QuickShip,820,1.46,1.4,None,74,Yes,Yes,779
+2025-01-09,East,R001,New York,Boston,TransEast,882,1.41,1.4,None,46,Yes,No,546
+2025-01-09,North,R002,Chicago,Milwaukee,TransEast,748,1.4,1.4,None,60,Yes,No,500
+2025-01-09,South,R004,Houston,Dallas,NorthernHaul,806,1.57,1.4,None,55,Yes,No,710
+2025-01-09,East,R005,New York,Washington,QuickShip,816,1.53,0.4,None,57,Yes,No,282
+2025-01-10,West,R001,Los Angeles,San Francisco,NorthernHaul,834,1.48,1.1,None,70,Yes,No,642
+2025-01-11,North,R003,Minneapolis,Detroit,TransEast,902,1.36,1.0,None,72,Yes,Yes,438
+2025-01-11,West,R003,Seattle,Portland,MoveWest,729,1.42,1.5,None,55,Yes,Yes,414
+2025-01-11,South,R003,New Orleans,Memphis,TransEast,891,1.54,1.5,None,47,Yes,No,404
+2025-01-12,North,R004,Toronto,Montreal,FastFreight,851,1.52,0.7,None,47,Yes,No,295
+2025-01-13,South,R003,New Orleans,Memphis,TransEast,743,1.53,0.5,None,71,Yes,Yes,782
+2025-01-13,West,R002,Seattle,Portland,TransEast,803,1.6,7.4,Mechanical,47,No,No,433
+2025-01-14,South,R005,Miami,Atlanta,NorthernHaul,907,1.57,0.5,None,51,Yes,No,465
+2025-01-14,North,R001,Chicago,Milwaukee,QuickShip,653,1.54,1.5,None,64,Yes,No,411
+2025-01-15,East,R001,New York,Washington,MoveWest,771,1.51,1.0,None,70,Yes,Yes,310
+2025-01-15,South,R001,New Orleans,Memphis,QuickShip,950,1.51,1.1,None,66,Yes,No,746
+2025-01-16,West,R003,San Diego,Las Vegas,NorthernHaul,882,1.56,1.1,None,53,Yes,Yes,302
+2025-01-17,West,R002,San Diego,Las Vegas,MoveWest,673,1.5,1.1,None,45,Yes,No,360
+2025-01-17,West,R001,Los Angeles,San Francisco,FastFreight,914,1.42,0.5,None,70,Yes,No,622
+2025-01-18,West,R002,San Diego,Las Vegas,QuickShip,657,1.4,0.2,None,57,Yes,No,262
+2025-01-18,East,R004,New York,Boston,NorthernHaul,862,1.55,6.2,Weather,64,No,No,603
+2025-01-19,North,R002,Chicago,Milwaukee,MoveWest,811,1.37,6.1,Mechanical,53,No,No,327
+2025-01-19,South,R001,New Orleans,Memphis,MoveWest,807,1.4,0.1,None,69,Yes,Yes,408
+2025-01-19,North,R002,Minneapolis,Detroit,GoSouth,886,1.61,6.3,Weather,74,No,No,458
+2025-01-19,North,R005,Toronto,Montreal,FastFreight,761,1.54,0.9,None,67,Yes,No,658
+2025-01-20,South,R002,Houston,Dallas,TransEast,822,1.43,1.2,None,60,Yes,No,818
+2025-01-20,South,R003,Miami,Atlanta,TransEast,836,1.5,1.2,None,56,Yes,No,606
+2025-01-20,South,R001,Houston,Dallas,MoveWest,852,1.6,0.9,None,65,Yes,No,439
+2025-01-20,South,R004,Houston,Dallas,GoSouth,868,1.53,0.9,None,52,Yes,Yes,532
+2025-01-21,West,R004,San Diego,Las Vegas,NorthernHaul,854,1.6,0.1,None,74,Yes,No,761
+2025-01-21,South,R001,New Orleans,Memphis,FastFreight,673,1.53,0.2,None,69,Yes,No,735
+2025-01-22,East,R002,New York,Boston,MoveWest,742,1.56,1.0,None,74,Yes,No,488
+2025-01-22,West,R003,Los Angeles,San Francisco,FastFreight,689,1.59,0.2,None,56,Yes,No,624
+2025-01-22,West,R004,San Diego,Las Vegas,TransEast,884,1.5,1.1,None,47,Yes,No,582
+2025-01-22,North,R001,Chicago,Milwaukee,QuickShip,683,1.56,0.9,None,75,Yes,No,746
+2025-01-23,West,R004,Seattle,Portland,GoSouth,946,1.61,0.3,None,57,Yes,Yes,605
+2025-01-24,East,R001,New York,Washington,TransEast,736,1.43,0.9,None,59,Yes,No,553
+2025-01-25,South,R003,Houston,Dallas,TransEast,754,1.61,0.1,None,55,Yes,No,679
+2025-01-25,South,R003,Houston,Dallas,NorthernHaul,823,1.42,1.3,None,62,Yes,No,722
+2025-01-25,South,R004,New Orleans,Memphis,TransEast,714,1.45,2.3,Traffic,53,No,No,635
+2025-01-25,North,R003,Minneapolis,Detroit,QuickShip,898,1.41,0.6,None,61,Yes,No,495
+2025-01-26,West,R001,Los Angeles,San Francisco,FastFreight,950,1.6,0.1,None,47,Yes,Yes,656
+2025-01-26,East,R004,New York,Washington,FastFreight,939,1.6,0.2,None,49,Yes,Yes,379
+2025-01-26,South,R004,New Orleans,Memphis,NorthernHaul,678,1.64,7.6,Weather,62,No,No,302
+2025-01-26,East,R004,Boston,Philadelphia,GoSouth,819,1.51,1.1,None,55,Yes,No,825
+2025-01-27,East,R001,New York,Boston,MoveWest,749,1.6,0.0,None,74,Yes,No,420
+2025-01-27,North,R003,Minneapolis,Detroit,GoSouth,881,1.53,2.1,Weather,56,No,No,693
+2025-01-27,North,R003,Chicago,Milwaukee,FastFreight,881,1.48,0.5,None,49,Yes,No,434
+2025-01-28,East,R001,New York,Boston,FastFreight,689,1.63,0.5,None,69,Yes,No,773
+2025-01-28,North,R002,Toronto,Montreal,NorthernHaul,768,1.45,0.7,None,68,Yes,No,435
+2025-01-29,West,R002,San Diego,Las Vegas,MoveWest,949,1.61,0.5,None,55,Yes,Yes,600
+2025-01-30,East,R002,New York,Boston,MoveWest,786,1.38,0.4,None,71,Yes,Yes,419
+2025-01-30,East,R002,New York,Boston,NorthernHaul,685,1.37,1.1,None,71,Yes,No,613
+2025-01-30,East,R003,New York,Washington,GoSouth,706,1.42,0.7,None,73,Yes,No,380
+2025-01-31,East,R005,New York,Washington,FastFreight,827,1.47,0.4,None,59,Yes,Yes,346
+2025-01-31,West,R002,San Diego,Las Vegas,MoveWest,784,1.36,0.6,None,67,Yes,Yes,517
+2025-01-31,North,R005,Minneapolis,Detroit,QuickShip,765,1.58,0.3,None,45,Yes,No,537
+2025-02-01,West,R002,San Diego,Las Vegas,MoveWest,743,1.51,0.2,None,56,Yes,Yes,729
+2025-02-01,West,R002,Seattle,Portland,QuickShip,910,1.48,0.8,None,48,Yes,No,322
+2025-02-01,East,R003,Boston,Philadelphia,TransEast,762,1.45,1.1,None,59,Yes,No,732
+2025-02-01,North,R001,Toronto,Montreal,FastFreight,945,1.39,5.9,Weather,60,No,No,323
+2025-02-02,East,R002,New York,Washington,GoSouth,701,1.4,0.4,None,62,Yes,No,635
+2025-02-02,South,R004,Houston,Dallas,NorthernHaul,917,1.37,1.4,None,46,Yes,No,523
+2025-02-02,South,R005,Miami,Atlanta,QuickShip,717,1.52,0.8,None,50,Yes,No,303
+2025-02-02,East,R001,New York,Washington,FastFreight,830,1.53,1.4,None,55,Yes,No,589
+2025-02-03,West,R001,Los Angeles,San Francisco,GoSouth,690,1.38,0.9,None,72,Yes,Yes,261
+2025-02-03,East,R004,New York,Boston,MoveWest,784,1.4,0.6,None,56,Yes,No,648
+2025-02-04,South,R003,Houston,Dallas,NorthernHaul,830,1.53,0.5,None,56,Yes,No,734
+2025-02-05,West,R002,Los Angeles,San Francisco,QuickShip,800,1.45,4.1,Traffic,75,No,No,427
+2025-02-05,West,R005,Seattle,Portland,NorthernHaul,729,1.39,0.6,None,63,Yes,No,425
+2025-02-05,West,R003,San Diego,Las Vegas,FastFreight,747,1.54,0.5,None,55,Yes,No,346
+2025-02-06,South,R005,Miami,Atlanta,MoveWest,867,1.63,0.2,None,59,Yes,No,413
+2025-02-06,North,R002,Chicago,Milwaukee,TransEast,901,1.43,0.7,None,54,Yes,No,715
+2025-02-06,South,R001,Miami,Atlanta,FastFreight,724,1.42,1.3,None,54,Yes,Yes,462
+2025-02-07,North,R004,Minneapolis,Detroit,TransEast,730,1.4,0.4,None,50,Yes,No,809
+2025-02-07,East,R005,New York,Washington,MoveWest,824,1.52,1.1,None,54,Yes,No,661
+2025-02-07,East,R003,New York,Boston,MoveWest,913,1.57,0.9,None,68,Yes,No,845
+2025-02-07,South,R005,New Orleans,Memphis,NorthernHaul,933,1.36,0.8,None,56,Yes,No,253
+2025-02-08,North,R001,Chicago,Milwaukee,MoveWest,904,1.6,1.2,None,68,Yes,No,831
+2025-02-08,North,R001,Toronto,Montreal,QuickShip,805,1.39,0.3,None,59,Yes,Yes,626
+2025-02-09,West,R005,Los Angeles,San Francisco,QuickShip,807,1.41,1.1,None,70,Yes,Yes,711
+2025-02-09,West,R001,Seattle,Portland,MoveWest,918,1.59,0.7,None,71,Yes,No,389
+2025-02-09,North,R003,Minneapolis,Detroit,NorthernHaul,696,1.36,1.0,None,64,Yes,No,701
+2025-02-09,South,R001,Miami,Atlanta,NorthernHaul,925,1.38,4.5,Loading_Delay,51,No,No,565
+2025-02-10,East,R001,New York,Boston,MoveWest,815,1.59,0.2,None,62,Yes,No,458
+2025-02-10,North,R005,Toronto,Montreal,MoveWest,943,1.59,0.2,None,54,Yes,No,676
+2025-02-10,North,R003,Chicago,Milwaukee,MoveWest,728,1.39,0.0,None,63,Yes,Yes,629
+2025-02-11,North,R002,Minneapolis,Detroit,TransEast,848,1.46,2.5,Weather,73,No,Yes,271
+2025-02-11,North,R005,Chicago,Milwaukee,TransEast,805,1.52,1.3,None,70,Yes,No,602
+2025-02-11,South,R002,Miami,Atlanta,FastFreight,663,1.4,3.2,Loading_Delay,62,No,No,341
+2025-02-12,East,R003,New York,Washington,NorthernHaul,735,1.55,2.7,Weather,60,No,No,585
+2025-02-12,West,R005,San Diego,Las Vegas,MoveWest,710,1.63,0.3,None,56,Yes,No,781
+2025-02-12,North,R002,Toronto,Montreal,GoSouth,720,1.41,0.9,None,53,Yes,No,588
+2025-02-12,East,R004,New York,Washington,GoSouth,811,1.55,1.1,None,61,Yes,No,436
+2025-02-13,South,R001,Miami,Atlanta,TransEast,907,1.36,1.5,None,67,Yes,No,377
+2025-02-13,East,R003,New York,Boston,NorthernHaul,699,1.56,0.5,None,49,Yes,Yes,547
+2025-02-13,North,R002,Minneapolis,Detroit,MoveWest,669,1.61,0.1,None,72,Yes,No,251
+2025-02-13,South,R003,New Orleans,Memphis,FastFreight,725,1.51,0.3,None,72,Yes,No,691
+2025-02-14,West,R004,Seattle,Portland,GoSouth,677,1.42,0.4,None,69,Yes,No,290
+2025-02-14,North,R004,Minneapolis,Detroit,FastFreight,941,1.55,0.1,None,61,Yes,Yes,483
+2025-02-14,South,R002,Miami,Atlanta,MoveWest,845,1.36,0.3,None,71,Yes,Yes,704
+2025-02-14,West,R002,San Diego,Las Vegas,MoveWest,713,1.36,1.0,None,70,Yes,No,812
+2025-02-15,West,R003,Seattle,Portland,MoveWest,856,1.36,0.3,None,72,Yes,No,431
+2025-02-15,East,R002,New York,Boston,TransEast,861,1.63,0.9,None,53,Yes,No,593
+2025-02-15,South,R003,Miami,Atlanta,NorthernHaul,726,1.42,0.4,None,48,Yes,No,586
+2025-02-16,East,R003,Boston,Philadelphia,QuickShip,922,1.53,1.5,None,61,Yes,No,690
+2025-02-16,East,R002,Boston,Philadelphia,GoSouth,811,1.44,1.3,None,56,Yes,Yes,734
+2025-02-16,East,R001,Boston,Philadelphia,MoveWest,722,1.48,1.3,None,47,Yes,No,469
+2025-02-17,South,R002,Miami,Atlanta,TransEast,827,1.55,7.3,Traffic,56,No,No,467
+2025-02-17,East,R002,Boston,Philadelphia,MoveWest,705,1.47,0.9,None,47,Yes,No,581
+2025-02-17,North,R002,Toronto,Montreal,QuickShip,692,1.47,0.2,None,52,Yes,No,743
+2025-02-18,East,R001,New York,Boston,GoSouth,668,1.54,1.1,None,73,Yes,No,424
+2025-02-18,East,R005,New York,Boston,QuickShip,780,1.54,0.5,None,49,Yes,Yes,847
+2025-02-18,North,R005,Minneapolis,Detroit,GoSouth,700,1.45,0.9,None,54,Yes,Yes,315
+2025-02-19,West,R005,Los Angeles,San Francisco,GoSouth,767,1.48,6.3,Weather,66,No,No,631
+2025-02-19,West,R001,San Diego,Las Vegas,GoSouth,926,1.55,7.6,Weather,47,No,Yes,288
+2025-02-19,North,R002,Minneapolis,Detroit,MoveWest,871,1.55,0.1,None,72,Yes,Yes,728
+2025-02-20,East,R001,New York,Washington,MoveWest,757,1.35,1.1,None,66,Yes,No,303
+2025-02-21,East,R004,Boston,Philadelphia,QuickShip,942,1.43,2.8,Traffic,75,No,Yes,424
+2025-02-21,South,R003,Houston,Dallas,FastFreight,783,1.47,4.4,Loading_Delay,58,No,No,801
+2025-02-22,West,R002,San Diego,Las Vegas,NorthernHaul,819,1.58,0.7,None,75,Yes,Yes,739
+2025-02-22,East,R005,Boston,Philadelphia,TransEast,750,1.45,1.4,None,67,Yes,No,631
+2025-02-22,South,R003,Houston,Dallas,NorthernHaul,847,1.6,1.5,None,61,Yes,No,314
+2025-02-23,West,R001,San Diego,Las Vegas,GoSouth,818,1.45,0.6,None,63,Yes,No,410
+2025-02-24,West,R005,San Diego,Las Vegas,GoSouth,838,1.58,1.0,None,48,Yes,No,514
+2025-02-25,East,R005,Boston,Philadelphia,MoveWest,940,1.53,1.1,None,52,Yes,Yes,738
+2025-02-25,South,R005,Houston,Dallas,TransEast,797,1.42,0.7,None,58,Yes,Yes,608
+2025-02-25,East,R001,Boston,Philadelphia,QuickShip,742,1.61,0.5,None,45,Yes,No,326
+2025-02-25,North,R005,Minneapolis,Detroit,NorthernHaul,791,1.37,1.0,None,56,Yes,No,309
+2025-02-26,West,R004,San Diego,Las Vegas,MoveWest,895,1.54,4.9,Mechanical,55,No,No,738
+2025-02-26,South,R004,Houston,Dallas,FastFreight,919,1.43,4.2,Mechanical,57,No,No,830
+2025-02-26,East,R003,New York,Boston,GoSouth,916,1.59,0.2,None,70,Yes,Yes,660
+2025-02-26,East,R002,Boston,Philadelphia,TransEast,694,1.36,0.0,None,48,Yes,No,815
+2025-02-27,East,R004,New York,Washington,QuickShip,845,1.38,0.1,None,50,Yes,No,365
+2025-02-28,South,R003,Miami,Atlanta,FastFreight,852,1.47,4.4,Loading_Delay,68,No,No,321
+2025-02-28,West,R002,San Diego,Las Vegas,FastFreight,873,1.45,1.3,None,54,Yes,No,374
+2025-02-28,South,R005,New Orleans,Memphis,TransEast,819,1.52,0.8,None,70,Yes,No,313
+2025-03-01,West,R005,Los Angeles,San Francisco,TransEast,944,1.58,0.8,None,51,Yes,No,369
+2025-03-01,North,R001,Minneapolis,Detroit,QuickShip,872,1.58,0.6,None,50,Yes,No,655
+2025-03-01,East,R004,New York,Boston,QuickShip,702,1.51,1.1,None,60,Yes,No,782
+2025-03-02,West,R003,Seattle,Portland,GoSouth,878,1.53,0.3,None,67,Yes,No,340
+2025-03-02,North,R005,Chicago,Milwaukee,MoveWest,764,1.62,6.8,Weather,69,No,No,575
+2025-03-03,East,R003,New York,Washington,QuickShip,769,1.63,0.4,None,56,Yes,No,635
+2025-03-03,West,R003,Seattle,Portland,GoSouth,804,1.35,4.7,Traffic,61,No,No,556
+2025-03-04,West,R003,Los Angeles,San Francisco,NorthernHaul,684,1.65,0.2,None,52,Yes,No,331
+2025-03-04,East,R004,New York,Boston,QuickShip,939,1.41,0.6,None,58,Yes,No,845
+2025-03-05,North,R001,Chicago,Milwaukee,MoveWest,676,1.52,1.5,None,72,Yes,Yes,514
+2025-03-05,West,R003,Los Angeles,San Francisco,MoveWest,868,1.65,0.3,None,67,Yes,No,276
+2025-03-05,South,R005,Houston,Dallas,NorthernHaul,882,1.59,0.8,None,75,Yes,No,361
+2025-03-06,West,R004,Seattle,Portland,NorthernHaul,707,1.65,1.4,None,72,Yes,No,828
+2025-03-07,West,R001,San Diego,Las Vegas,QuickShip,651,1.54,0.6,None,66,Yes,No,695
+2025-03-07,North,R003,Minneapolis,Detroit,QuickShip,788,1.41,0.3,None,74,Yes,No,626
+2025-03-07,South,R004,Miami,Atlanta,TransEast,941,1.62,1.3,None,52,Yes,Yes,633
+2025-03-08,South,R001,Miami,Atlanta,NorthernHaul,773,1.43,7.6,Loading_Delay,64,No,Yes,791
+2025-03-08,East,R003,Boston,Philadelphia,GoSouth,687,1.38,1.3,None,67,Yes,No,591
+2025-03-08,East,R005,New York,Boston,NorthernHaul,917,1.5,6.6,Weather,67,No,No,262
+2025-03-09,South,R001,Houston,Dallas,NorthernHaul,673,1.5,0.3,None,55,Yes,No,714
+2025-03-09,South,R003,Miami,Atlanta,QuickShip,657,1.51,0.5,None,48,Yes,Yes,828
+2025-03-09,South,R005,New Orleans,Memphis,GoSouth,780,1.45,1.3,None,74,Yes,Yes,832
+2025-03-09,South,R004,Houston,Dallas,NorthernHaul,859,1.36,5.2,Traffic,62,No,Yes,329
+2025-03-10,East,R004,Boston,Philadelphia,FastFreight,884,1.43,1.3,None,61,Yes,No,809
+2025-03-10,North,R002,Chicago,Milwaukee,MoveWest,701,1.59,0.4,None,68,Yes,No,688
+2025-03-10,North,R003,Minneapolis,Detroit,TransEast,782,1.37,1.2,None,61,Yes,Yes,737
+2025-03-11,East,R002,Boston,Philadelphia,QuickShip,693,1.65,1.1,None,48,Yes,Yes,672
+2025-03-11,North,R004,Chicago,Milwaukee,TransEast,764,1.56,0.9,None,55,Yes,No,703
+2025-03-11,East,R004,New York,Boston,TransEast,911,1.54,1.0,None,51,Yes,Yes,810
+2025-03-12,East,R005,New York,Washington,QuickShip,751,1.49,1.2,None,70,Yes,No,782
+2025-03-12,North,R005,Toronto,Montreal,MoveWest,806,1.62,0.5,None,46,Yes,Yes,724
+2025-03-12,North,R005,Chicago,Milwaukee,GoSouth,874,1.43,6.1,Loading_Delay,70,No,No,501
+2025-03-12,East,R005,New York,Washington,QuickShip,672,1.57,0.4,None,63,Yes,No,450
+2025-03-13,West,R001,San Diego,Las Vegas,QuickShip,808,1.57,0.2,None,61,Yes,No,625
+2025-03-14,North,R002,Toronto,Montreal,NorthernHaul,759,1.57,0.4,None,74,Yes,No,615
+2025-03-15,North,R001,Toronto,Montreal,NorthernHaul,940,1.52,7.9,Mechanical,71,No,Yes,581
+2025-03-15,West,R005,Seattle,Portland,MoveWest,735,1.5,0.1,None,59,Yes,No,631
+2025-03-15,South,R004,Houston,Dallas,MoveWest,839,1.37,1.0,None,62,Yes,Yes,829
+2025-03-15,East,R005,New York,Boston,GoSouth,912,1.53,0.8,None,60,Yes,No,603
+2025-03-16,South,R004,Miami,Atlanta,TransEast,905,1.48,1.1,None,69,Yes,No,313
+2025-03-16,East,R005,New York,Boston,TransEast,709,1.38,0.5,None,67,Yes,No,791
+2025-03-16,North,R004,Toronto,Montreal,MoveWest,862,1.63,1.4,None,72,Yes,No,554
+2025-03-17,North,R001,Chicago,Milwaukee,GoSouth,915,1.56,0.4,None,71,Yes,No,833
+2025-03-17,West,R005,San Diego,Las Vegas,MoveWest,922,1.59,0.7,None,58,Yes,Yes,562
+2025-03-17,South,R003,Miami,Atlanta,NorthernHaul,753,1.38,1.3,None,59,Yes,No,320
+2025-03-17,East,R002,New York,Washington,GoSouth,810,1.6,1.5,None,60,Yes,No,373
+2025-03-18,South,R005,Houston,Dallas,NorthernHaul,949,1.5,0.8,None,60,Yes,Yes,399
+2025-03-19,East,R001,New York,Boston,MoveWest,902,1.41,0.5,None,68,Yes,Yes,720
+2025-03-19,South,R004,Houston,Dallas,NorthernHaul,932,1.52,1.0,None,50,Yes,No,836
+2025-03-19,West,R003,San Diego,Las Vegas,TransEast,706,1.45,0.9,None,49,Yes,No,462
+2025-03-20,East,R005,Boston,Philadelphia,NorthernHaul,827,1.36,7.2,Weather,54,No,Yes,337
+2025-03-20,South,R003,New Orleans,Memphis,MoveWest,714,1.38,1.5,None,59,Yes,No,415
+2025-03-21,East,R005,New York,Boston,NorthernHaul,776,1.36,0.1,None,46,Yes,No,612
+2025-03-22,South,R001,Miami,Atlanta,GoSouth,744,1.47,0.4,None,45,Yes,No,284
+2025-03-22,East,R004,New York,Washington,TransEast,940,1.52,1.3,None,61,Yes,No,449
+2025-03-22,North,R005,Minneapolis,Detroit,MoveWest,880,1.5,0.1,None,68,Yes,No,778
+2025-03-22,South,R002,Houston,Dallas,TransEast,895,1.42,0.2,None,51,Yes,No,736
+2025-03-23,East,R005,New York,Washington,TransEast,912,1.65,0.5,None,57,Yes,No,300
+2025-03-23,West,R001,Seattle,Portland,FastFreight,935,1.37,0.1,None,74,Yes,No,801
+2025-03-24,South,R001,Miami,Atlanta,FastFreight,822,1.46,3.7,Weather,70,No,Yes,312
+2025-03-24,West,R004,Seattle,Portland,FastFreight,711,1.38,3.5,Mechanical,61,No,No,557
+2025-03-24,West,R004,San Diego,Las Vegas,MoveWest,856,1.47,6.0,Mechanical,70,No,No,286
+2025-03-24,North,R005,Minneapolis,Detroit,QuickShip,695,1.6,1.3,None,70,Yes,No,836
+2025-03-25,South,R004,Houston,Dallas,QuickShip,662,1.44,0.2,None,67,Yes,No,503
+2025-03-25,West,R004,Los Angeles,San Francisco,NorthernHaul,838,1.52,0.9,None,62,Yes,No,427
+2025-03-25,West,R003,San Diego,Las Vegas,NorthernHaul,684,1.57,1.0,None,52,Yes,No,413
+2025-03-26,East,R005,Boston,Philadelphia,GoSouth,678,1.49,0.4,None,64,Yes,No,808
+2025-03-26,North,R001,Minneapolis,Detroit,GoSouth,837,1.55,3.9,Mechanical,53,No,No,595
+2025-03-26,East,R005,New York,Washington,QuickShip,924,1.46,0.0,None,53,Yes,No,818
+2025-03-27,South,R005,Houston,Dallas,FastFreight,849,1.58,3.7,Traffic,62,No,Yes,807
+2025-03-27,East,R002,New York,Washington,MoveWest,903,1.63,0.6,None,75,Yes,No,579
+2025-03-27,South,R002,Houston,Dallas,FastFreight,684,1.51,0.1,None,62,Yes,Yes,657
+2025-03-27,East,R002,Boston,Philadelphia,QuickShip,893,1.63,6.2,Traffic,52,No,No,389
+2025-03-28,South,R001,Miami,Atlanta,QuickShip,891,1.62,0.8,None,47,Yes,No,314
+2025-03-28,South,R003,Miami,Atlanta,GoSouth,716,1.46,0.8,None,56,Yes,Yes,399
+2025-03-28,South,R002,Houston,Dallas,TransEast,701,1.35,0.7,None,74,Yes,No,344
+2025-03-29,North,R004,Toronto,Montreal,TransEast,940,1.38,0.2,None,68,Yes,No,526
+2025-03-29,East,R004,New York,Boston,GoSouth,929,1.41,0.8,None,68,Yes,No,250
+2025-03-30,South,R004,Miami,Atlanta,FastFreight,802,1.38,0.5,None,72,Yes,No,542
+2025-03-31,North,R004,Toronto,Montreal,NorthernHaul,793,1.48,0.7,None,47,Yes,No,358
+2025-03-31,South,R003,New Orleans,Memphis,NorthernHaul,911,1.64,0.7,None,45,Yes,No,664
+2025-03-31,North,R001,Minneapolis,Detroit,MoveWest,714,1.65,0.3,None,54,Yes,No,330
+2025-04-01,West,R004,San Diego,Las Vegas,NorthernHaul,860,1.52,0.2,None,50,Yes,No,618
+2025-04-01,South,R001,Houston,Dallas,MoveWest,663,1.54,0.9,None,60,Yes,Yes,294
+2025-04-01,West,R003,San Diego,Las Vegas,MoveWest,810,1.41,0.2,None,57,Yes,Yes,260
+2025-04-02,South,R002,New Orleans,Memphis,QuickShip,654,1.47,0.3,None,57,Yes,No,341
+2025-04-03,North,R001,Minneapolis,Detroit,MoveWest,933,1.64,5.7,Traffic,67,No,No,736
+2025-04-03,North,R005,Minneapolis,Detroit,MoveWest,739,1.44,0.5,None,74,Yes,Yes,604
+2025-04-03,North,R001,Chicago,Milwaukee,QuickShip,733,1.39,0.5,None,48,Yes,No,525
+2025-04-03,South,R005,Houston,Dallas,QuickShip,904,1.5,1.3,None,47,Yes,Yes,369
+2025-04-04,West,R004,Seattle,Portland,GoSouth,670,1.58,1.1,None,61,Yes,No,341
+2025-04-04,South,R004,Miami,Atlanta,QuickShip,801,1.58,1.3,None,54,Yes,No,294
+2025-04-04,North,R005,Minneapolis,Detroit,GoSouth,731,1.63,1.0,None,47,Yes,No,775
+2025-04-05,South,R004,Miami,Atlanta,GoSouth,716,1.46,0.4,None,52,Yes,No,791
+2025-04-05,East,R004,Boston,Philadelphia,GoSouth,736,1.4,0.5,None,57,Yes,Yes,603
+2025-04-06,North,R003,Chicago,Milwaukee,QuickShip,723,1.44,0.7,None,53,Yes,No,776
+2025-04-06,South,R003,Miami,Atlanta,NorthernHaul,903,1.65,0.9,None,62,Yes,No,387
+2025-04-06,East,R002,Boston,Philadelphia,GoSouth,721,1.56,0.7,None,46,Yes,No,516
+2025-04-07,North,R004,Minneapolis,Detroit,NorthernHaul,813,1.38,0.4,None,72,Yes,No,841
+2025-04-07,North,R003,Minneapolis,Detroit,FastFreight,872,1.48,1.1,None,55,Yes,No,355
+2025-04-08,East,R002,Boston,Philadelphia,FastFreight,900,1.36,0.7,None,66,Yes,No,644
+2025-04-08,North,R005,Chicago,Milwaukee,TransEast,790,1.39,0.0,None,55,Yes,Yes,533
+2025-04-08,East,R001,Boston,Philadelphia,MoveWest,941,1.44,0.8,None,68,Yes,No,514
+2025-04-09,West,R002,Seattle,Portland,GoSouth,758,1.39,0.5,None,54,Yes,Yes,310
+2025-04-09,North,R003,Minneapolis,Detroit,TransEast,937,1.37,0.6,None,61,Yes,No,601
+2025-04-09,North,R005,Toronto,Montreal,NorthernHaul,803,1.43,0.9,None,69,Yes,No,613
+2025-04-09,West,R005,San Diego,Las Vegas,FastFreight,935,1.41,1.5,None,49,Yes,Yes,345
+2025-04-10,East,R002,New York,Washington,MoveWest,933,1.45,0.5,None,47,Yes,Yes,813
+2025-04-10,East,R003,Boston,Philadelphia,NorthernHaul,717,1.37,1.1,None,65,Yes,Yes,637
+2025-04-10,South,R005,Houston,Dallas,TransEast,750,1.46,1.3,None,55,Yes,Yes,535
+2025-04-10,South,R004,Miami,Atlanta,GoSouth,718,1.42,0.5,None,65,Yes,Yes,598
+2025-04-11,North,R003,Minneapolis,Detroit,TransEast,745,1.65,1.4,None,68,Yes,No,634
+2025-04-11,West,R003,San Diego,Las Vegas,NorthernHaul,663,1.41,1.2,None,56,Yes,Yes,682
+2025-04-12,East,R002,New York,Washington,NorthernHaul,924,1.48,0.3,None,75,Yes,No,501
+2025-04-13,West,R003,Seattle,Portland,GoSouth,913,1.53,2.5,Loading_Delay,64,No,No,589
+2025-04-13,West,R004,Seattle,Portland,QuickShip,702,1.44,2.2,Loading_Delay,62,No,Yes,720
+2025-04-13,East,R003,New York,Washington,QuickShip,706,1.53,0.3,None,63,Yes,Yes,744
+2025-04-14,North,R004,Chicago,Milwaukee,FastFreight,799,1.49,6.3,Loading_Delay,56,No,No,566
+2025-04-14,East,R003,New York,Boston,TransEast,895,1.42,0.6,None,45,Yes,No,448
+2025-04-14,West,R003,Seattle,Portland,QuickShip,873,1.57,2.8,Loading_Delay,46,No,No,797
+2025-04-15,North,R003,Chicago,Milwaukee,TransEast,789,1.38,0.1,None,63,Yes,Yes,328
+2025-04-15,North,R003,Minneapolis,Detroit,QuickShip,715,1.61,0.6,None,50,Yes,Yes,321
+2025-04-15,South,R003,Miami,Atlanta,QuickShip,923,1.55,0.7,None,46,Yes,No,623
+2025-04-15,West,R003,Los Angeles,San Francisco,MoveWest,839,1.6,0.6,None,48,Yes,No,733
+2025-04-16,West,R005,Seattle,Portland,NorthernHaul,847,1.47,0.1,None,65,Yes,No,842
+2025-04-17,North,R001,Minneapolis,Detroit,GoSouth,914,1.61,0.4,None,72,Yes,No,401
+2025-04-17,South,R004,Houston,Dallas,NorthernHaul,932,1.59,0.6,None,66,Yes,No,771
+2025-04-17,West,R003,Los Angeles,San Francisco,FastFreight,735,1.54,1.2,None,46,Yes,No,389
+2025-04-17,West,R001,San Diego,Las Vegas,TransEast,811,1.39,7.9,Weather,59,No,Yes,318
+2025-04-18,South,R002,New Orleans,Memphis,NorthernHaul,904,1.5,0.1,None,67,Yes,No,434
+2025-04-18,South,R005,Miami,Atlanta,QuickShip,933,1.63,0.7,None,58,Yes,No,278
+2025-04-18,South,R001,Miami,Atlanta,TransEast,877,1.53,0.9,None,53,Yes,No,764
+2025-04-18,North,R003,Chicago,Milwaukee,TransEast,676,1.52,3.2,Weather,75,No,No,614
+2025-04-19,North,R005,Chicago,Milwaukee,GoSouth,925,1.62,0.6,None,47,Yes,No,662
+2025-04-19,East,R005,Boston,Philadelphia,FastFreight,850,1.62,2.5,Mechanical,56,No,No,320
+2025-04-20,West,R003,Seattle,Portland,TransEast,862,1.52,1.3,None,74,Yes,No,306
+2025-04-21,East,R004,Boston,Philadelphia,QuickShip,805,1.57,0.4,None,63,Yes,No,413
+2025-04-21,South,R003,Houston,Dallas,FastFreight,945,1.65,0.8,None,74,Yes,No,678
+2025-04-21,North,R004,Minneapolis,Detroit,FastFreight,928,1.63,1.4,None,66,Yes,No,347
+2025-04-21,North,R005,Chicago,Milwaukee,NorthernHaul,688,1.61,0.8,None,71,Yes,No,766
+2025-04-22,East,R004,Boston,Philadelphia,NorthernHaul,737,1.41,1.0,None,69,Yes,Yes,727
+2025-04-22,East,R001,Boston,Philadelphia,TransEast,773,1.57,1.2,None,65,Yes,No,722
+2025-04-22,South,R003,Miami,Atlanta,NorthernHaul,764,1.48,0.0,None,57,Yes,Yes,338
+2025-04-22,North,R004,Chicago,Milwaukee,MoveWest,718,1.55,0.1,None,57,Yes,Yes,270
+2025-04-23,North,R004,Chicago,Milwaukee,NorthernHaul,733,1.58,0.5,None,57,Yes,No,454
+2025-04-24,South,R005,Miami,Atlanta,GoSouth,891,1.61,0.8,None,69,Yes,No,760
+2025-04-24,North,R002,Minneapolis,Detroit,NorthernHaul,744,1.37,0.9,None,65,Yes,No,521
+2025-04-24,South,R003,Miami,Atlanta,NorthernHaul,731,1.59,0.0,None,62,Yes,No,423
+2025-04-25,East,R002,New York,Boston,NorthernHaul,743,1.51,0.8,None,49,Yes,No,597
+2025-04-25,East,R005,New York,Washington,MoveWest,868,1.54,0.7,None,68,Yes,No,683
+2025-04-25,East,R001,New York,Washington,QuickShip,830,1.52,0.5,None,58,Yes,Yes,371
+2025-04-26,East,R005,New York,Washington,MoveWest,654,1.53,0.1,None,69,Yes,No,428
+2025-04-26,East,R004,New York,Boston,MoveWest,700,1.43,5.7,Traffic,52,No,No,673
+2025-04-26,East,R001,Boston,Philadelphia,GoSouth,868,1.62,0.9,None,57,Yes,No,327
+2025-04-27,West,R002,Seattle,Portland,QuickShip,782,1.45,1.3,None,65,Yes,No,666
+2025-04-27,North,R004,Minneapolis,Detroit,TransEast,897,1.42,0.6,None,72,Yes,Yes,296
+2025-04-27,East,R001,New York,Washington,FastFreight,902,1.57,1.3,None,69,Yes,No,296
+2025-04-27,East,R001,New York,Boston,GoSouth,809,1.6,1.0,None,75,Yes,Yes,269
+2025-04-28,South,R001,New Orleans,Memphis,MoveWest,870,1.58,0.0,None,73,Yes,No,711
+2025-04-28,South,R003,New Orleans,Memphis,FastFreight,707,1.54,6.5,Weather,51,No,No,252
+2025-04-28,South,R002,Miami,Atlanta,TransEast,888,1.51,0.9,None,72,Yes,No,710
+2025-04-29,North,R004,Chicago,Milwaukee,NorthernHaul,688,1.57,1.3,None,53,Yes,Yes,470
+2025-04-29,South,R003,Miami,Atlanta,TransEast,806,1.59,0.9,None,57,Yes,No,283
+2025-04-29,North,R005,Minneapolis,Detroit,GoSouth,934,1.48,0.7,None,59,Yes,No,660
+2025-04-29,South,R004,New Orleans,Memphis,MoveWest,875,1.53,1.5,None,47,Yes,Yes,700
+2025-04-30,South,R003,Miami,Atlanta,TransEast,885,1.43,0.6,None,70,Yes,Yes,534
+2025-04-30,North,R001,Chicago,Milwaukee,GoSouth,663,1.41,4.9,Mechanical,68,No,Yes,774
+2025-05-01,West,R001,Seattle,Portland,QuickShip,742,1.55,1.1,None,64,Yes,No,324
+2025-05-01,South,R002,New Orleans,Memphis,TransEast,858,1.46,0.4,None,49,Yes,No,380
+2025-05-02,East,R001,Boston,Philadelphia,QuickShip,797,1.36,1.5,None,64,Yes,Yes,545
+2025-05-02,East,R005,New York,Boston,QuickShip,930,1.4,0.6,None,74,Yes,Yes,303
+2025-05-02,East,R002,New York,Washington,MoveWest,677,1.45,1.0,None,60,Yes,Yes,512
+2025-05-02,North,R001,Chicago,Milwaukee,TransEast,684,1.47,6.4,Traffic,55,No,No,806
+2025-05-03,North,R003,Minneapolis,Detroit,TransEast,721,1.49,0.4,None,63,Yes,No,587
+2025-05-03,East,R005,Boston,Philadelphia,QuickShip,913,1.46,1.0,None,72,Yes,Yes,277
+2025-05-03,West,R003,Seattle,Portland,QuickShip,777,1.62,0.9,None,73,Yes,Yes,612
+2025-05-03,East,R003,New York,Boston,NorthernHaul,893,1.46,0.2,None,50,Yes,Yes,259
+2025-05-04,West,R002,Seattle,Portland,QuickShip,767,1.54,0.2,None,68,Yes,No,344
+2025-05-05,West,R001,San Diego,Las Vegas,MoveWest,926,1.61,0.7,None,72,Yes,Yes,783
+2025-05-06,North,R002,Toronto,Montreal,TransEast,680,1.61,0.2,None,64,Yes,No,496
+2025-05-07,South,R005,New Orleans,Memphis,TransEast,680,1.38,1.5,None,73,Yes,No,574
+2025-05-07,North,R001,Toronto,Montreal,TransEast,659,1.42,0.6,None,57,Yes,No,529
+2025-05-08,South,R003,Houston,Dallas,TransEast,662,1.46,3.3,Mechanical,52,No,No,641
+2025-05-08,South,R005,Miami,Atlanta,QuickShip,880,1.59,0.1,None,70,Yes,No,511
+2025-05-08,South,R003,Miami,Atlanta,GoSouth,763,1.61,2.2,Weather,66,No,No,735
+2025-05-09,East,R002,New York,Boston,FastFreight,804,1.61,0.2,None,67,Yes,Yes,829
+2025-05-09,West,R004,Los Angeles,San Francisco,FastFreight,703,1.55,1.4,None,48,Yes,No,613
+2025-05-09,West,R003,Seattle,Portland,GoSouth,883,1.51,0.0,None,48,Yes,No,399
+2025-05-10,East,R003,New York,Washington,TransEast,683,1.55,0.3,None,49,Yes,Yes,693
+2025-05-10,East,R001,New York,Washington,FastFreight,662,1.44,0.3,None,67,Yes,Yes,787
+2025-05-11,North,R003,Chicago,Milwaukee,MoveWest,742,1.42,0.5,None,72,Yes,No,762
+2025-05-12,East,R004,Boston,Philadelphia,NorthernHaul,676,1.57,0.2,None,69,Yes,Yes,450
+2025-05-12,South,R002,New Orleans,Memphis,NorthernHaul,762,1.5,1.2,None,63,Yes,No,692
+2025-05-12,South,R002,Houston,Dallas,TransEast,768,1.44,0.3,None,63,Yes,No,453
+2025-05-12,North,R002,Chicago,Milwaukee,MoveWest,917,1.42,1.0,None,66,Yes,No,657
+2025-05-13,East,R005,New York,Washington,FastFreight,897,1.51,1.0,None,60,Yes,No,609
+2025-05-13,North,R004,Chicago,Milwaukee,MoveWest,801,1.62,0.6,None,51,Yes,Yes,780
+2025-05-14,West,R004,Los Angeles,San Francisco,GoSouth,929,1.5,1.2,None,57,Yes,No,424
+2025-05-14,West,R003,San Diego,Las Vegas,NorthernHaul,904,1.39,1.3,None,68,Yes,No,850
+2025-05-14,West,R005,Los Angeles,San Francisco,FastFreight,933,1.57,1.0,None,60,Yes,No,786
+2025-05-14,South,R002,New Orleans,Memphis,QuickShip,814,1.36,0.3,None,47,Yes,Yes,829
+2025-05-15,West,R001,San Diego,Las Vegas,MoveWest,696,1.57,0.9,None,68,Yes,No,846
+2025-05-16,South,R003,Houston,Dallas,TransEast,897,1.52,0.7,None,71,Yes,No,334
+2025-05-16,West,R002,Los Angeles,San Francisco,TransEast,891,1.44,1.1,None,47,Yes,Yes,741
+2025-05-16,North,R001,Chicago,Milwaukee,FastFreight,828,1.42,6.0,Loading_Delay,48,No,Yes,615
+2025-05-17,North,R001,Toronto,Montreal,NorthernHaul,924,1.36,0.7,None,73,Yes,No,337
+2025-05-17,South,R003,Houston,Dallas,QuickShip,901,1.38,0.2,None,46,Yes,No,359
+2025-05-17,East,R003,New York,Boston,QuickShip,775,1.5,1.1,None,73,Yes,No,376
+2025-05-17,South,R003,Houston,Dallas,MoveWest,821,1.63,1.2,None,48,Yes,No,561
+2025-05-18,North,R005,Toronto,Montreal,MoveWest,672,1.36,1.2,None,49,Yes,No,760
+2025-05-18,North,R001,Minneapolis,Detroit,TransEast,681,1.55,1.1,None,52,Yes,No,377
+2025-05-18,West,R003,San Diego,Las Vegas,FastFreight,692,1.38,0.2,None,74,Yes,Yes,276
+2025-05-18,West,R004,Seattle,Portland,FastFreight,764,1.42,0.9,None,54,Yes,No,302
+2025-05-19,North,R004,Minneapolis,Detroit,FastFreight,753,1.42,0.6,None,66,Yes,Yes,609
+2025-05-19,North,R004,Chicago,Milwaukee,NorthernHaul,803,1.61,0.6,None,73,Yes,No,753
+2025-05-20,West,R001,San Diego,Las Vegas,GoSouth,848,1.5,1.0,None,65,Yes,Yes,752
+2025-05-20,East,R005,New York,Boston,GoSouth,860,1.62,0.2,None,68,Yes,No,475
+2025-05-20,South,R001,New Orleans,Memphis,TransEast,819,1.37,0.3,None,46,Yes,Yes,696
+2025-05-20,South,R005,New Orleans,Memphis,FastFreight,815,1.4,0.7,None,67,Yes,No,792
+2025-05-21,South,R004,Miami,Atlanta,NorthernHaul,681,1.45,0.8,None,54,Yes,No,530
+2025-05-21,East,R005,New York,Boston,NorthernHaul,949,1.59,0.6,None,60,Yes,No,507
+2025-05-21,West,R002,San Diego,Las Vegas,FastFreight,771,1.56,0.6,None,63,Yes,No,452
+2025-05-22,East,R005,New York,Boston,NorthernHaul,776,1.42,0.7,None,60,Yes,No,298
+2025-05-23,North,R005,Chicago,Milwaukee,GoSouth,917,1.47,0.9,None,55,Yes,No,500
+2025-05-23,North,R005,Minneapolis,Detroit,FastFreight,864,1.61,0.6,None,47,Yes,No,837
+2025-05-23,West,R004,Seattle,Portland,GoSouth,827,1.36,1.2,None,51,Yes,No,652
+2025-05-24,West,R002,Los Angeles,San Francisco,QuickShip,711,1.38,1.1,None,58,Yes,No,773
+2025-05-24,South,R002,New Orleans,Memphis,GoSouth,882,1.41,3.9,Loading_Delay,74,No,No,572
+2025-05-25,West,R002,Seattle,Portland,NorthernHaul,671,1.52,7.9,Loading_Delay,45,No,No,651
+2025-05-25,West,R003,Seattle,Portland,QuickShip,860,1.37,1.0,None,46,Yes,No,320
+2025-05-26,East,R002,New York,Boston,NorthernHaul,889,1.64,1.1,None,66,Yes,No,345
+2025-05-27,North,R002,Chicago,Milwaukee,GoSouth,850,1.54,0.7,None,69,Yes,Yes,420
+2025-05-28,East,R004,New York,Washington,FastFreight,669,1.5,0.7,None,64,Yes,No,263
+2025-05-29,North,R003,Minneapolis,Detroit,NorthernHaul,782,1.5,0.5,None,71,Yes,No,560
+2025-05-30,South,R001,Miami,Atlanta,NorthernHaul,691,1.51,4.3,Loading_Delay,62,No,Yes,459
+2025-05-30,East,R005,New York,Washington,NorthernHaul,832,1.63,0.8,None,67,Yes,Yes,506
+2025-05-30,West,R001,Seattle,Portland,MoveWest,687,1.56,1.1,None,52,Yes,No,548
+2025-05-31,East,R004,Boston,Philadelphia,TransEast,734,1.64,1.0,None,48,Yes,No,578
+2025-05-31,West,R003,Seattle,Portland,MoveWest,929,1.43,3.0,Mechanical,75,No,No,786
+2025-05-31,East,R002,New York,Washington,NorthernHaul,851,1.64,3.3,Weather,47,No,No,413
+2025-06-01,South,R001,Miami,Atlanta,QuickShip,788,1.65,0.2,None,58,Yes,No,697
+2025-06-01,North,R004,Toronto,Montreal,QuickShip,667,1.37,0.4,None,54,Yes,No,262
+2025-06-02,South,R001,New Orleans,Memphis,TransEast,761,1.61,0.4,None,45,Yes,No,484
+2025-06-02,North,R002,Toronto,Montreal,NorthernHaul,659,1.41,0.1,None,71,Yes,No,822
+2025-06-03,West,R004,Seattle,Portland,FastFreight,678,1.49,0.4,None,50,Yes,Yes,720
+2025-06-04,West,R004,Los Angeles,San Francisco,QuickShip,688,1.51,1.3,None,53,Yes,Yes,737
+2025-06-04,West,R002,Los Angeles,San Francisco,GoSouth,941,1.44,2.3,Loading_Delay,60,No,Yes,759
+2025-06-05,East,R001,Boston,Philadelphia,FastFreight,691,1.47,6.1,Loading_Delay,72,No,No,797
+2025-06-05,West,R005,Los Angeles,San Francisco,GoSouth,820,1.58,1.5,None,65,Yes,No,266
+2025-06-05,North,R005,Chicago,Milwaukee,FastFreight,811,1.44,0.9,None,74,Yes,Yes,320
+2025-06-06,East,R003,New York,Washington,NorthernHaul,650,1.44,1.2,None,53,Yes,No,293
+2025-06-06,West,R002,Seattle,Portland,NorthernHaul,839,1.51,0.3,None,73,Yes,No,302
+2025-06-06,North,R002,Toronto,Montreal,TransEast,785,1.52,0.7,None,73,Yes,No,285
+2025-06-06,West,R003,Seattle,Portland,QuickShip,658,1.65,0.9,None,49,Yes,No,577
+2025-06-07,West,R003,Seattle,Portland,TransEast,866,1.62,0.8,None,58,Yes,Yes,640
+2025-06-07,West,R004,Los Angeles,San Francisco,MoveWest,695,1.51,1.1,None,62,Yes,Yes,713
+2025-06-08,North,R001,Toronto,Montreal,MoveWest,658,1.61,4.3,Loading_Delay,55,No,No,683
+2025-06-08,North,R001,Toronto,Montreal,TransEast,933,1.38,0.7,None,47,Yes,Yes,607
+2025-06-08,East,R004,Boston,Philadelphia,TransEast,676,1.45,0.1,None,59,Yes,Yes,708
+2025-06-09,West,R001,Seattle,Portland,NorthernHaul,672,1.39,1.4,None,75,Yes,No,281
+2025-06-09,South,R004,New Orleans,Memphis,GoSouth,723,1.37,0.3,None,70,Yes,Yes,744
+2025-06-09,South,R005,Miami,Atlanta,NorthernHaul,911,1.62,0.4,None,66,Yes,No,539
+2025-06-10,West,R001,San Diego,Las Vegas,FastFreight,942,1.43,0.9,None,49,Yes,No,380
+2025-06-10,North,R003,Toronto,Montreal,MoveWest,937,1.39,0.4,None,49,Yes,No,401
+2025-06-10,South,R004,Miami,Atlanta,NorthernHaul,797,1.48,0.9,None,47,Yes,No,638
+2025-06-11,West,R002,Los Angeles,San Francisco,FastFreight,803,1.36,0.2,None,49,Yes,No,685
+2025-06-12,West,R002,San Diego,Las Vegas,NorthernHaul,829,1.44,0.9,None,73,Yes,No,826
+2025-06-12,East,R001,New York,Boston,TransEast,716,1.39,1.0,None,54,Yes,No,817
+2025-06-12,South,R004,New Orleans,Memphis,FastFreight,682,1.58,0.4,None,51,Yes,Yes,401
+2025-06-13,West,R004,San Diego,Las Vegas,GoSouth,735,1.55,0.9,None,60,Yes,No,840
+2025-06-14,East,R002,New York,Boston,NorthernHaul,861,1.42,1.5,None,61,Yes,No,836
+2025-06-15,East,R005,New York,Washington,GoSouth,852,1.56,0.5,None,68,Yes,No,798
+2025-06-15,South,R005,Miami,Atlanta,NorthernHaul,875,1.55,1.4,None,66,Yes,No,525
+2025-06-16,North,R001,Toronto,Montreal,FastFreight,892,1.5,0.4,None,56,Yes,No,733
+2025-06-16,East,R002,New York,Washington,FastFreight,847,1.44,1.3,None,45,Yes,No,698
+2025-06-17,North,R001,Chicago,Milwaukee,GoSouth,773,1.52,0.8,None,49,Yes,No,581
+2025-06-17,South,R003,Miami,Atlanta,NorthernHaul,680,1.46,7.5,Loading_Delay,75,No,Yes,580
+2025-06-18,West,R005,Los Angeles,San Francisco,MoveWest,892,1.36,0.5,None,48,Yes,Yes,323
+2025-06-18,West,R003,San Diego,Las Vegas,QuickShip,652,1.5,0.7,None,60,Yes,Yes,536
+2025-06-18,West,R002,Seattle,Portland,QuickShip,782,1.38,6.6,Traffic,75,No,No,504
+2025-06-18,South,R002,New Orleans,Memphis,TransEast,737,1.53,0.1,None,72,Yes,Yes,776
+2025-06-19,North,R004,Toronto,Montreal,NorthernHaul,924,1.57,2.5,Weather,74,No,No,418
+2025-06-19,North,R002,Minneapolis,Detroit,TransEast,743,1.58,1.0,None,69,Yes,No,414
+2025-06-19,East,R001,Boston,Philadelphia,MoveWest,914,1.49,0.0,None,65,Yes,No,275
+2025-06-20,West,R001,Los Angeles,San Francisco,MoveWest,680,1.63,1.0,None,68,Yes,Yes,792
+2025-06-21,South,R005,Houston,Dallas,FastFreight,666,1.51,0.3,None,56,Yes,Yes,343
+2025-06-22,West,R001,San Diego,Las Vegas,FastFreight,905,1.51,1.1,None,49,Yes,No,520
+2025-06-22,North,R004,Chicago,Milwaukee,FastFreight,893,1.6,0.6,None,52,Yes,No,692
+2025-06-22,East,R003,New York,Boston,QuickShip,742,1.41,0.1,None,61,Yes,No,282
+2025-06-22,North,R003,Chicago,Milwaukee,NorthernHaul,747,1.57,2.5,Mechanical,75,No,No,761
+2025-06-23,North,R003,Chicago,Milwaukee,NorthernHaul,755,1.56,1.2,None,62,Yes,Yes,362
+2025-06-23,West,R003,Seattle,Portland,FastFreight,894,1.36,0.8,None,45,Yes,No,342
+2025-06-23,North,R005,Chicago,Milwaukee,GoSouth,783,1.56,0.0,None,68,Yes,Yes,808
+2025-06-24,West,R001,Seattle,Portland,MoveWest,723,1.6,2.2,Weather,67,No,Yes,255
+2025-06-24,North,R003,Toronto,Montreal,GoSouth,652,1.4,7.3,Weather,45,No,No,395
+2025-06-25,East,R003,New York,Boston,TransEast,922,1.57,0.2,None,72,Yes,No,725
+2025-06-26,West,R002,Seattle,Portland,MoveWest,703,1.49,2.9,Mechanical,71,No,No,265
+2025-06-26,West,R002,Seattle,Portland,GoSouth,829,1.38,0.9,None,63,Yes,No,446
+2025-06-27,West,R003,Los Angeles,San Francisco,TransEast,821,1.38,0.5,None,74,Yes,No,549
+2025-06-27,South,R005,Houston,Dallas,NorthernHaul,875,1.39,0.1,None,49,Yes,No,317
+2025-06-27,West,R003,Seattle,Portland,NorthernHaul,683,1.51,0.1,None,68,Yes,No,337
+2025-06-27,North,R005,Minneapolis,Detroit,FastFreight,842,1.39,0.2,None,73,Yes,No,313
+2025-06-28,South,R005,Miami,Atlanta,GoSouth,735,1.49,5.3,Weather,65,No,No,392
+2025-06-29,West,R001,San Diego,Las Vegas,TransEast,693,1.57,4.5,Traffic,50,No,Yes,409
+2025-06-29,East,R005,Boston,Philadelphia,NorthernHaul,826,1.4,0.4,None,45,Yes,No,354
+2025-06-30,East,R003,Boston,Philadelphia,GoSouth,719,1.38,0.7,None,51,Yes,Yes,447
+2025-06-30,North,R004,Minneapolis,Detroit,QuickShip,841,1.5,0.4,None,57,Yes,No,758
+2025-06-30,East,R001,Boston,Philadelphia,NorthernHaul,856,1.42,0.6,None,48,Yes,Yes,804
+2025-07-01,East,R004,New York,Boston,NorthernHaul,733,1.62,6.0,Loading_Delay,62,No,No,671
+2025-07-01,South,R004,Houston,Dallas,TransEast,830,1.62,0.8,None,70,Yes,No,358
+2025-07-01,South,R004,Houston,Dallas,TransEast,784,1.56,0.4,None,66,Yes,No,315
+2025-07-02,South,R002,Houston,Dallas,QuickShip,686,1.35,0.6,None,48,Yes,Yes,302
+2025-07-03,South,R002,Houston,Dallas,TransEast,712,1.52,0.4,None,54,Yes,No,849
+2025-07-03,East,R001,New York,Boston,QuickShip,752,1.52,1.0,None,48,Yes,No,374
+2025-07-03,South,R004,Houston,Dallas,MoveWest,860,1.57,0.1,None,74,Yes,No,305
+2025-07-04,South,R002,Houston,Dallas,FastFreight,724,1.51,0.9,None,54,Yes,No,758
+2025-07-04,North,R003,Chicago,Milwaukee,GoSouth,733,1.5,0.5,None,52,Yes,No,281
+2025-07-04,East,R002,Boston,Philadelphia,FastFreight,786,1.4,0.2,None,53,Yes,Yes,771
+2025-07-05,North,R003,Minneapolis,Detroit,NorthernHaul,932,1.38,7.3,Traffic,73,No,No,275
+2025-07-05,East,R005,New York,Boston,QuickShip,713,1.64,1.2,None,64,Yes,No,366
+2025-07-05,North,R005,Toronto,Montreal,TransEast,798,1.48,0.7,None,68,Yes,No,505
+2025-07-05,South,R003,Miami,Atlanta,QuickShip,835,1.55,0.4,None,61,Yes,Yes,622
+2025-07-06,South,R005,Houston,Dallas,TransEast,650,1.38,1.0,None,63,Yes,No,289
+2025-07-06,South,R003,New Orleans,Memphis,GoSouth,908,1.6,0.7,None,62,Yes,No,810
+2025-07-06,East,R005,New York,Washington,GoSouth,714,1.43,0.1,None,75,Yes,No,546
+2025-07-07,South,R001,Houston,Dallas,MoveWest,772,1.38,1.3,None,74,Yes,No,836
+2025-07-07,South,R005,Miami,Atlanta,QuickShip,826,1.42,6.7,Weather,47,No,Yes,814
+2025-07-07,South,R005,New Orleans,Memphis,MoveWest,811,1.6,0.1,None,50,Yes,No,712
+2025-07-07,North,R005,Minneapolis,Detroit,NorthernHaul,758,1.39,0.9,None,69,Yes,No,440
+2025-07-08,South,R004,Miami,Atlanta,NorthernHaul,939,1.56,0.7,None,56,Yes,No,782
+2025-07-08,West,R001,Los Angeles,San Francisco,FastFreight,764,1.39,0.3,None,48,Yes,No,374

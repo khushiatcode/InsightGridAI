@@ -1,0 +1,20 @@
+{
+  "name": "insights-grid-ai",
+  "version": "1.0.0",
+  "description": "AWS Digital Twin Copilot for Enterprises",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build:infra && npm run build:frontend",
+    "build:infra": "cd infrastructure && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "deploy": "cd infrastructure && npm run deploy",
+    "start": "cd frontend && npm start",
+    "dev": "concurrently \"npm run start\" \"npm run deploy\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "keywords": ["aws", "digital-twin", "ai", "enterprise", "analytics"],
+  "author": "InsightsGridAI Team",
+  "license": "MIT"
+}

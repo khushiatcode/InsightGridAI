@@ -1,0 +1,151 @@
+customer_id,name,segment,location,account_manager,lifetime_value,churn_risk,acquisition_date,last_order_date
+CUST-00001,Company_1,B2B,Montreal,David Kim,122968,High,2023-09-10,2025-05-04
+CUST-00002,Company_2,Retail,Philadelphia,David Kim,60588,High,2023-11-19,2025-05-04
+CUST-00003,Company_3,Retail,Phoenix,Tom Wilson,152198,Medium,2024-04-28,2025-05-07
+CUST-00004,Company_4,B2B,Atlanta,Tom Wilson,422532,Low,2024-06-15,2025-06-23
+CUST-00005,Customer_5,B2C,Houston,Maria Garcia,38895,High,2024-05-14,2025-05-21
+CUST-00006,Company_6,B2B,Boston,James Lee,325762,Low,2023-07-18,2025-06-20
+CUST-00007,Company_7,B2B,Miami,Lisa Anderson,85440,Medium,2023-10-04,2025-06-12
+CUST-00008,Company_8,Retail,Atlanta,Tom Wilson,153378,Medium,2023-08-01,2025-05-07
+CUST-00009,Company_9,Retail,Philadelphia,David Kim,30229,Medium,2023-11-19,2025-05-21
+CUST-00010,Company_10,B2B,Vancouver,Mike Chen,374675,High,2024-06-16,2025-06-11
+CUST-00011,Customer_11,B2C,Miami,Emily Rodriguez,7657,High,2023-10-20,2025-06-15
+CUST-00012,Company_12,B2B,San Jose,Tom Wilson,115024,Low,2024-06-07,2025-05-31
+CUST-00013,Company_13,B2B,Los Angeles,David Kim,205594,Medium,2023-09-17,2025-06-11
+CUST-00014,Customer_14,B2C,Montreal,Lisa Anderson,7686,Low,2023-11-21,2025-05-14
+CUST-00015,Customer_15,B2C,Los Angeles,Mike Chen,20654,Low,2023-10-04,2025-06-06
+CUST-00016,Customer_16,B2C,San Antonio,James Lee,26607,Low,2024-04-01,2025-05-08
+CUST-00017,Company_17,B2B,New York,Mike Chen,324267,Low,2024-01-27,2025-06-15
+CUST-00018,Customer_18,B2C,Chicago,Emily Rodriguez,14728,High,2024-01-23,2025-05-04
+CUST-00019,Company_19,B2B,San Antonio,James Lee,92746,Low,2023-12-28,2025-06-14
+CUST-00020,Customer_20,B2C,Montreal,James Lee,21724,Low,2024-03-12,2025-05-27
+CUST-00021,Customer_21,B2C,Seattle,Sarah Johnson,13444,Medium,2024-01-11,2025-05-11
+CUST-00022,Company_22,B2B,Houston,Mike Chen,433384,Low,2023-10-25,2025-06-08
+CUST-00023,Customer_23,B2C,Montreal,Sarah Johnson,33539,High,2024-06-08,2025-06-24
+CUST-00024,Company_24,Retail,Phoenix,Emily Rodriguez,66155,Medium,2023-07-13,2025-05-31
+CUST-00025,Company_25,Retail,Los Angeles,Mike Chen,66847,High,2023-06-08,2025-06-28
+CUST-00026,Customer_26,B2C,Boston,Emily Rodriguez,23081,Medium,2023-07-01,2025-05-31
+CUST-00027,Company_27,Retail,New York,Tom Wilson,91670,Medium,2023-11-27,2025-06-11
+CUST-00028,Company_28,Retail,Phoenix,Lisa Anderson,164660,Medium,2023-11-04,2025-05-05
+CUST-00029,Customer_29,B2C,San Antonio,Mike Chen,13610,High,2023-10-10,2025-05-03
+CUST-00030,Company_30,B2B,San Diego,Sarah Johnson,85447,Low,2024-03-04,2025-05-23
+CUST-00031,Company_31,B2B,San Antonio,David Kim,200329,Medium,2023-08-01,2025-05-14
+CUST-00032,Company_32,Retail,Houston,Lisa Anderson,47629,Medium,2023-12-18,2025-06-24
+CUST-00033,Company_33,B2B,Phoenix,Tom Wilson,212944,Medium,2023-07-13,2025-06-14
+CUST-00034,Company_34,Retail,Houston,Maria Garcia,91925,Medium,2023-08-26,2025-06-02
+CUST-00035,Company_35,B2B,Denver,Tom Wilson,296400,Medium,2023-08-01,2025-05-23
+CUST-00036,Company_36,B2B,Toronto,Sarah Johnson,218705,Medium,2024-03-15,2025-05-21
+CUST-00037,Company_37,Retail,San Diego,Sarah Johnson,81119,Low,2024-06-17,2025-06-26
+CUST-00038,Customer_38,B2C,Vancouver,David Kim,33566,Medium,2024-05-10,2025-06-05
+CUST-00039,Customer_39,B2C,Boston,Sarah Johnson,36446,High,2024-01-08,2025-05-18
+CUST-00040,Company_40,B2B,Miami,Sarah Johnson,135183,Low,2023-08-07,2025-06-09
+CUST-00041,Company_41,B2B,Atlanta,Tom Wilson,331438,High,2024-06-17,2025-05-09
+CUST-00042,Customer_42,B2C,New York,Emily Rodriguez,39243,High,2024-04-11,2025-06-07
+CUST-00043,Company_43,B2B,Montreal,Tom Wilson,159748,Low,2023-07-17,2025-06-02
+CUST-00044,Company_44,Retail,Montreal,Emily Rodriguez,69816,Medium,2023-06-19,2025-05-10
+CUST-00045,Customer_45,B2C,Phoenix,Emily Rodriguez,26012,Medium,2024-02-05,2025-05-09
+CUST-00046,Company_46,Retail,New York,Tom Wilson,136428,High,2024-03-16,2025-06-29
+CUST-00047,Company_47,Retail,Phoenix,Sarah Johnson,125082,Low,2024-06-08,2025-06-12
+CUST-00048,Company_48,B2B,Seattle,Sarah Johnson,283743,Low,2024-06-07,2025-06-29
+CUST-00049,Customer_49,B2C,New York,James Lee,1935,Medium,2023-12-27,2025-05-22
+CUST-00050,Company_50,B2B,San Jose,Mike Chen,207514,High,2023-09-06,2025-05-13
+CUST-00051,Customer_51,B2C,Seattle,Maria Garcia,49313,Low,2023-10-03,2025-05-26
+CUST-00052,Customer_52,B2C,Miami,David Kim,22069,High,2023-10-18,2025-05-13
+CUST-00053,Company_53,Retail,Toronto,Sarah Johnson,31435,High,2024-06-04,2025-06-23
+CUST-00054,Company_54,B2B,Montreal,Maria Garcia,432956,Low,2023-10-08,2025-05-26
+CUST-00055,Customer_55,B2C,Dallas,Maria Garcia,17320,High,2024-03-30,2025-05-20
+CUST-00056,Company_56,B2B,Miami,Lisa Anderson,353427,Low,2023-11-16,2025-06-13
+CUST-00057,Company_57,B2B,Vancouver,Sarah Johnson,368711,High,2024-03-11,2025-05-08
+CUST-00058,Customer_58,B2C,San Diego,David Kim,15335,High,2023-07-02,2025-05-28
+CUST-00059,Company_59,Retail,Toronto,Mike Chen,193579,Medium,2024-04-30,2025-06-23
+CUST-00060,Company_60,Retail,Phoenix,Mike Chen,147283,Low,2023-09-01,2025-05-26
+CUST-00061,Customer_61,B2C,Philadelphia,Tom Wilson,42367,High,2023-09-24,2025-06-13
+CUST-00062,Company_62,B2B,Houston,Tom Wilson,150676,Low,2023-09-06,2025-06-18
+CUST-00063,Customer_63,B2C,Chicago,Tom Wilson,25889,High,2024-05-20,2025-05-08
+CUST-00064,Company_64,Retail,Houston,Mike Chen,101439,Medium,2023-07-04,2025-06-07
+CUST-00065,Company_65,Retail,Houston,Maria Garcia,127845,Low,2023-12-27,2025-06-18
+CUST-00066,Company_66,Retail,San Diego,Mike Chen,135267,Medium,2024-04-05,2025-06-16
+CUST-00067,Company_67,B2B,Philadelphia,Maria Garcia,89905,Low,2023-12-25,2025-06-14
+CUST-00068,Company_68,B2B,Atlanta,Lisa Anderson,168073,Low,2024-02-08,2025-06-12
+CUST-00069,Customer_69,B2C,Boston,David Kim,32476,Medium,2024-03-19,2025-06-21
+CUST-00070,Company_70,B2B,Atlanta,Emily Rodriguez,243019,High,2024-06-06,2025-06-30
+CUST-00071,Customer_71,B2C,Boston,James Lee,8124,Low,2023-09-21,2025-06-15
+CUST-00072,Company_72,B2B,Dallas,James Lee,235436,Low,2024-03-04,2025-05-21
+CUST-00073,Customer_73,B2C,New York,Mike Chen,13275,Medium,2023-07-02,2025-06-07
+CUST-00074,Company_74,B2B,Vancouver,David Kim,253485,Low,2024-01-26,2025-05-24
+CUST-00075,Company_75,B2B,Toronto,David Kim,442674,Low,2023-08-30,2025-06-24
+CUST-00076,Customer_76,B2C,Montreal,Tom Wilson,33197,Low,2023-06-20,2025-05-03
+CUST-00077,Company_77,B2B,Philadelphia,Sarah Johnson,319475,Low,2024-01-27,2025-06-07
+CUST-00078,Company_78,Retail,Denver,Sarah Johnson,117239,High,2024-04-01,2025-06-22
+CUST-00079,Company_79,Retail,Boston,Tom Wilson,153217,High,2024-03-05,2025-05-11
+CUST-00080,Company_80,Retail,Vancouver,Lisa Anderson,113478,Medium,2023-08-19,2025-06-06
+CUST-00081,Customer_81,B2C,Vancouver,David Kim,47367,High,2023-08-06,2025-06-17
+CUST-00082,Customer_82,B2C,Chicago,Tom Wilson,39668,Medium,2023-07-20,2025-06-17
+CUST-00083,Company_83,Retail,Houston,James Lee,185596,Low,2023-10-12,2025-06-18
+CUST-00084,Company_84,Retail,Houston,Sarah Johnson,171970,Low,2024-05-08,2025-06-16
+CUST-00085,Company_85,B2B,Phoenix,David Kim,446081,Medium,2024-01-25,2025-05-11
+CUST-00086,Customer_86,B2C,Los Angeles,Sarah Johnson,28064,High,2024-03-11,2025-06-10
+CUST-00087,Customer_87,B2C,Dallas,Maria Garcia,18446,High,2023-10-06,2025-06-09
+CUST-00088,Company_88,B2B,Phoenix,David Kim,370272,Low,2023-11-23,2025-05-25
+CUST-00089,Customer_89,B2C,Philadelphia,Sarah Johnson,2678,Low,2024-06-16,2025-05-04
+CUST-00090,Company_90,B2B,Boston,Maria Garcia,431234,Low,2023-07-05,2025-06-06
+CUST-00091,Company_91,B2B,San Jose,Sarah Johnson,349371,Medium,2024-03-23,2025-06-11
+CUST-00092,Customer_92,B2C,Houston,Maria Garcia,21078,Medium,2024-05-04,2025-05-09
+CUST-00093,Company_93,B2B,Dallas,Emily Rodriguez,272703,Low,2024-04-10,2025-05-18
+CUST-00094,Customer_94,B2C,Houston,Sarah Johnson,29868,High,2023-10-17,2025-06-22
+CUST-00095,Company_95,B2B,Los Angeles,James Lee,57593,Medium,2024-06-11,2025-05-28
+CUST-00096,Company_96,B2B,Boston,Sarah Johnson,319427,Low,2023-07-02,2025-06-24
+CUST-00097,Customer_97,B2C,Chicago,Lisa Anderson,20305,Medium,2023-09-12,2025-05-08
+CUST-00098,Company_98,B2B,Los Angeles,Maria Garcia,382127,Low,2023-07-04,2025-06-02
+CUST-00099,Customer_99,B2C,Toronto,James Lee,22231,Low,2023-11-16,2025-05-09
+CUST-00100,Company_100,Retail,Houston,Maria Garcia,194636,Low,2023-08-04,2025-05-30
+CUST-00101,Company_101,Retail,San Jose,David Kim,92321,Low,2024-01-20,2025-06-26
+CUST-00102,Company_102,B2B,New York,Tom Wilson,273599,Low,2024-03-03,2025-06-17
+CUST-00103,Company_103,Retail,Denver,Sarah Johnson,64922,Low,2024-02-13,2025-06-14
+CUST-00104,Customer_104,B2C,Montreal,Mike Chen,7719,Medium,2024-06-20,2025-05-08
+CUST-00105,Company_105,Retail,Denver,David Kim,61985,Low,2023-11-11,2025-05-17
+CUST-00106,Company_106,Retail,Vancouver,Lisa Anderson,107129,Medium,2023-12-21,2025-06-11
+CUST-00107,Customer_107,B2C,Dallas,Lisa Anderson,30331,High,2024-04-12,2025-05-08
+CUST-00108,Company_108,Retail,Miami,David Kim,115805,Low,2024-05-22,2025-05-17
+CUST-00109,Customer_109,B2C,Dallas,Mike Chen,7578,Medium,2023-09-07,2025-05-13
+CUST-00110,Customer_110,B2C,Los Angeles,Sarah Johnson,26464,High,2024-06-19,2025-05-18
+CUST-00111,Company_111,B2B,San Antonio,James Lee,79342,High,2024-06-04,2025-06-28
+CUST-00112,Company_112,B2B,Seattle,Lisa Anderson,156827,Low,2024-03-31,2025-05-22
+CUST-00113,Customer_113,B2C,Denver,Maria Garcia,26776,Medium,2023-11-13,2025-05-07
+CUST-00114,Company_114,B2B,Toronto,Mike Chen,59309,Medium,2024-02-26,2025-06-22
+CUST-00115,Company_115,Retail,San Diego,Sarah Johnson,91324,Low,2023-07-11,2025-05-14
+CUST-00116,Company_116,B2B,San Diego,Lisa Anderson,166613,High,2024-05-20,2025-06-17
+CUST-00117,Company_117,Retail,Vancouver,Maria Garcia,125476,High,2024-02-21,2025-06-16
+CUST-00118,Company_118,Retail,San Antonio,Emily Rodriguez,45896,Medium,2024-04-03,2025-06-06
+CUST-00119,Company_119,B2B,New York,Emily Rodriguez,370096,High,2023-11-15,2025-05-08
+CUST-00120,Customer_120,B2C,Phoenix,Mike Chen,18244,High,2023-07-15,2025-05-08
+CUST-00121,Company_121,Retail,Atlanta,James Lee,169136,Low,2024-01-15,2025-06-06
+CUST-00122,Company_122,B2B,Phoenix,Sarah Johnson,469043,Low,2023-09-05,2025-06-22
+CUST-00123,Company_123,Retail,Los Angeles,Emily Rodriguez,124319,Medium,2024-02-20,2025-05-16
+CUST-00124,Company_124,B2B,Philadelphia,Lisa Anderson,291918,High,2024-04-11,2025-05-12
+CUST-00125,Company_125,Retail,San Antonio,Sarah Johnson,78783,High,2023-12-08,2025-06-05
+CUST-00126,Customer_126,B2C,Chicago,Sarah Johnson,19591,Medium,2023-12-31,2025-06-21
+CUST-00127,Company_127,B2B,Seattle,Mike Chen,206297,Low,2023-08-13,2025-06-10
+CUST-00128,Customer_128,B2C,Los Angeles,James Lee,8001,High,2024-01-27,2025-05-16
+CUST-00129,Company_129,B2B,Vancouver,Mike Chen,54847,Low,2024-03-18,2025-05-26
+CUST-00130,Customer_130,B2C,Vancouver,Tom Wilson,3393,Low,2023-10-14,2025-06-05
+CUST-00131,Company_131,B2B,San Jose,Maria Garcia,260353,Low,2023-10-19,2025-05-26
+CUST-00132,Company_132,Retail,Toronto,Lisa Anderson,162862,Low,2023-10-21,2025-05-16
+CUST-00133,Customer_133,B2C,Denver,Sarah Johnson,37476,Medium,2023-10-16,2025-06-22
+CUST-00134,Company_134,Retail,Vancouver,Maria Garcia,79273,Low,2023-09-19,2025-06-08
+CUST-00135,Company_135,B2B,Denver,Mike Chen,357961,Low,2023-10-23,2025-06-16
+CUST-00136,Company_136,B2B,Boston,Sarah Johnson,65565,Low,2024-03-31,2025-05-25
+CUST-00137,Customer_137,B2C,Montreal,Mike Chen,8082,High,2024-07-03,2025-05-05
+CUST-00138,Company_138,Retail,Atlanta,Emily Rodriguez,39819,Low,2024-02-18,2025-05-25
+CUST-00139,Customer_139,B2C,San Diego,David Kim,42590,High,2023-12-14,2025-05-05
+CUST-00140,Company_140,B2B,Miami,Sarah Johnson,414738,High,2023-09-26,2025-05-25
+CUST-00141,Company_141,Retail,New York,Emily Rodriguez,155233,Medium,2023-10-31,2025-05-05
+CUST-00142,Company_142,Retail,San Diego,Sarah Johnson,52638,High,2023-11-10,2025-06-01
+CUST-00143,Company_143,B2B,Toronto,Tom Wilson,204892,Low,2024-06-17,2025-05-06
+CUST-00144,Company_144,B2B,Dallas,Lisa Anderson,348675,Low,2024-04-12,2025-05-24
+CUST-00145,Customer_145,B2C,Vancouver,James Lee,30908,High,2024-05-01,2025-05-02
+CUST-00146,Company_146,B2B,Seattle,Emily Rodriguez,216969,Medium,2024-06-07,2025-05-22
+CUST-00147,Company_147,Retail,Montreal,Lisa Anderson,194552,Low,2023-08-11,2025-06-02
+CUST-00148,Customer_148,B2C,Seattle,Emily Rodriguez,44691,Low,2023-10-23,2025-06-16
+CUST-00149,Company_149,B2B,Chicago,Lisa Anderson,114509,Medium,2023-09-06,2025-06-10
+CUST-00150,Company_150,B2B,Toronto,Maria Garcia,56257,Low,2023-11-05,2025-06-15

@@ -48,9 +48,9 @@ const ChatWithData: React.FC = () => {
     try {
       // Call through Lambda proxy to avoid CORS issues
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 25000); // 25 second timeout
+      const timeoutId = setTimeout(() => controller.abort(), 60000); // 60 second timeout
       
-      const response = await fetch('https://h3qy1xq5kh.execute-api.us-east-1.amazonaws.com/prod/api/chat-with-data', {
+      const response = await fetch('https://aij9r8sc8i.execute-api.us-east-1.amazonaws.com/chat-with-data', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -84,7 +84,7 @@ const ChatWithData: React.FC = () => {
         id: (Date.now() + 1).toString(),
         type: 'assistant',
         content: error.name === 'AbortError' 
-          ? '⏱️ The request took too long. The Airia pipeline may need optimization or your question is too complex. Please try a simpler question or check your Airia pipeline configuration.'
+          ? '⏱️ Your request took more than 60 seconds. Please try a simpler question or try again later.'
           : `❌ Error: ${error.message || 'Please check your Airia API credentials and pipeline configuration.'}`,
         timestamp: new Date()
       };

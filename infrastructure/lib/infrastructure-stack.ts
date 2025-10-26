@@ -2,6 +2,8 @@ import * as cdk from 'aws-cdk-lib';
 import * as s3 from 'aws-cdk-lib/aws-s3';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as apigateway from 'aws-cdk-lib/aws-apigateway';
+import * as apigatewayv2 from 'aws-cdk-lib/aws-apigatewayv2';
+import * as apigatewayv2_integrations from 'aws-cdk-lib/aws-apigatewayv2-integrations';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import * as glue from 'aws-cdk-lib/aws-glue';
 import * as athena from 'aws-cdk-lib/aws-athena';
@@ -160,18 +162,33 @@ export class InsightsGridAiStack extends cdk.Stack {
       }
     });
 
-    // Lambda function for Airia Bedrock integration (stateless)
+    // Lambda function for AI Chat (uses Airia pipeline 0e2a6599)
     const bedrockLambda = new lambda.Function(this, 'BedrockLambda', {
       runtime: lambda.Runtime.PYTHON_3_11,
       handler: 'index.handler',
       code: lambda.Code.fromAsset('lambda/bedrock'),
-      timeout: cdk.Duration.minutes(2),
+      timeout: cdk.Duration.seconds(90), // 90 seconds for Airia API
       environment: {
         FINANCE_BUCKET: 'insightgridai-finance',
         LOGISTICS_BUCKET: 'insightgridai-logistics',
         SALES_BUCKET: 'insightgridai-sales',
         RESULTS_BUCKET: resultsBucket.bucketName,
-        WORKGROUP: athenaWorkgroup.name!
+        WORKGROUP: athenaWorkgroup.name!,
+        // SECURITY: Load from environment variables - never commit real credentials!
+        AIRIA_API_KEY: process.env.AIRIA_API_KEY || 'YOUR_AIRIA_API_KEY_HERE',
+        AIRIA_USER_ID: process.env.AIRIA_USER_ID || 'YOUR_AIRIA_USER_ID_HERE'
+      }
+    });
+
+    // Lambda function for Airia Chat (Chat with Data widget)
+    const airiaChatLambda = new lambda.Function(this, 'AiriaChatLambda', {
+      runtime: lambda.Runtime.PYTHON_3_11,
+      handler: 'index.handler',
+      code: lambda.Code.fromAsset('lambda/airia-chat'),
+      timeout: cdk.Duration.seconds(90), // 90 seconds for Airia API
+      environment: {
+        AIRIA_API_KEY: process.env.AIRIA_API_KEY || 'YOUR_AIRIA_API_KEY_HERE',
+        AIRIA_USER_ID: process.env.AIRIA_USER_ID || 'YOUR_AIRIA_USER_ID_HERE'
       }
     });
 
@@ -189,6 +206,7 @@ export class InsightsGridAiStack extends cdk.Stack {
     // API Gateway integrations
     const dataProcessorIntegration = new apigateway.LambdaIntegration(dataProcessorLambda);
     const bedrockIntegration = new apigateway.LambdaIntegration(bedrockLambda);
+    const airiaChatIntegration = new apigateway.LambdaIntegration(airiaChatLambda);
 
     // API routes
     const dataResource = api.root.addResource('data');
@@ -197,6 +215,9 @@ export class InsightsGridAiStack extends cdk.Stack {
 
     const chatResource = api.root.addResource('chat');
     chatResource.addMethod('POST', bedrockIntegration);
+
+    const chatWithDataResource = api.root.addResource('chat-with-data');
+    chatWithDataResource.addMethod('POST', airiaChatIntegration);
 
     const simulationResource = api.root.addResource('simulate');
     simulationResource.addMethod('POST', dataProcessorIntegration); // Use data processor for simulations
@@ -266,10 +287,56 @@ export class InsightsGridAiStack extends cdk.Stack {
       resources: ['*']
     }));
 
+    // HTTP API v2 for chat endpoints (30 second timeout instead of 29)
+    const httpApi = new apigatewayv2.HttpApi(this, 'InsightsGridHttpApi', {
+      apiName: 'InsightsGridAI HTTP API',
+      description: 'HTTP API for chat endpoints with 30s timeout',
+      corsPreflight: {
+        allowOrigins: ['*'],
+        allowMethods: [apigatewayv2.CorsHttpMethod.ANY],
+        allowHeaders: ['Content-Type', 'Authorization'],
+      },
+    });
+
+    // HTTP API integrations for chat endpoints
+    const chatHttpIntegration = new apigatewayv2_integrations.HttpLambdaIntegration(
+      'ChatIntegration',
+      bedrockLambda,
+      {
+        payloadFormatVersion: apigatewayv2.PayloadFormatVersion.VERSION_2_0,
+      }
+    );
+
+    const chatWithDataHttpIntegration = new apigatewayv2_integrations.HttpLambdaIntegration(
+      'ChatWithDataIntegration',
+      airiaChatLambda,
+      {
+        payloadFormatVersion: apigatewayv2.PayloadFormatVersion.VERSION_2_0,
+      }
+    );
+
+    // Add HTTP API routes for chat
+    httpApi.addRoutes({
+      path: '/chat',
+      methods: [apigatewayv2.HttpMethod.POST],
+      integration: chatHttpIntegration,
+    });
+
+    httpApi.addRoutes({
+      path: '/chat-with-data',
+      methods: [apigatewayv2.HttpMethod.POST],
+      integration: chatWithDataHttpIntegration,
+    });
+
     // Outputs
     new cdk.CfnOutput(this, 'ApiUrl', {
       value: api.url,
-      description: 'API Gateway URL'
+      description: 'REST API Gateway URL (29s timeout)'
+    });
+
+    new cdk.CfnOutput(this, 'HttpApiUrl', {
+      value: httpApi.url || httpApi.apiEndpoint,
+      description: 'HTTP API URL for chat endpoints (30s timeout)'
     });
 
     new cdk.CfnOutput(this, 'ResultsBucketName', {

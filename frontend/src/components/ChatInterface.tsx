@@ -44,8 +44,12 @@ const ChatInterface: React.FC = () => {
     setIsLoading(true);
 
     try {
-      // Call Gemini-powered chat via bedrock endpoint
-      const response = await fetch('https://h3qy1xq5kh.execute-api.us-east-1.amazonaws.com/prod/api/chat', {
+      // Create AbortController with 60 second timeout
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 60000); // 60 seconds
+
+      // Call Airia AI Chat endpoint via HTTP API (30s timeout, pipeline 0e2a6599)
+      const response = await fetch('https://aij9r8sc8i.execute-api.us-east-1.amazonaws.com/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -53,7 +57,10 @@ const ChatInterface: React.FC = () => {
         body: JSON.stringify({
           message: inputMessage
         }),
+        signal: controller.signal
       });
+
+      clearTimeout(timeoutId);
 
       const data = await response.json();
       
@@ -65,12 +72,14 @@ const ChatInterface: React.FC = () => {
       };
 
       setMessages(prev => [...prev, assistantMessage]);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error sending message:', error);
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         type: 'assistant',
-        content: 'Sorry, I encountered an error. Please try again.',
+        content: error.name === 'AbortError' 
+          ? '⏱️ Your request took more than 60 seconds. Please try a simpler question or try again later.'
+          : 'Sorry, I encountered an error. Please try again.',
         timestamp: new Date()
       };
       setMessages(prev => [...prev, errorMessage]);

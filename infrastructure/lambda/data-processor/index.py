@@ -77,8 +77,10 @@ def handle_get_request(event):
             return get_product_performance(days)
         elif query_type == 'regional-performance':
             return get_regional_performance(days)
+        elif query_type == 'budget-vs-spent':
+            return get_budget_vs_spent(days)
         else:
-            return create_response(400, {'error': f'Invalid query type: {query_type}', 'available_types': ['overview', 'trends', 'costs', 'analytics-kpis', 'product-performance', 'regional-performance']})
+            return create_response(400, {'error': f'Invalid query type: {query_type}', 'available_types': ['overview', 'trends', 'costs', 'analytics-kpis', 'product-performance', 'regional-performance', 'budget-vs-spent']})
     except Exception as e:
         print(f"Error in handle_get_request: {str(e)}")
         import traceback
@@ -169,7 +171,7 @@ def get_trend_data(days=30):
     
     # Get logistics data by date
     logistics_query = f"""
-        SELECT date, AVG(fuel_price_per_l) as avg_fuel_price, COUNT(DISTINCT route_id) as shipment_count
+        SELECT date, AVG(fuel_price_per_l) as avg_fuel_price, COUNT(DISTINCT route_id) as shipment_count, SUM(fuel_used_l) as fuel_volume
         FROM insights_grid_db.logistics
         GROUP BY date
         ORDER BY date DESC
@@ -200,14 +202,16 @@ def get_trend_data(days=30):
     
     logistics_by_date = {}
     for row in logistics_result['ResultSet']['Rows'][1:]:
-        if len(row['Data']) >= 3:
+        if len(row['Data']) >= 4:
             date_val = row['Data'][0].get('VarCharValue', '')
             fuel_val = row['Data'][1].get('VarCharValue', '') if 'VarCharValue' in row['Data'][1] else ''
             ship_val = row['Data'][2].get('VarCharValue', '') if 'VarCharValue' in row['Data'][2] else ''
+            vol_val = row['Data'][3].get('VarCharValue', '') if 'VarCharValue' in row['Data'][3] else ''
             if date_val and date_val != 'date':  # Skip header
                 logistics_by_date[date_val] = {
                     'fuel_price': float(fuel_val) if fuel_val and fuel_val != '' else 0,
-                    'shipment_count': int(float(ship_val)) if ship_val and ship_val != '' else 0
+                    'shipment_count': int(float(ship_val)) if ship_val and ship_val != '' else 0,
+                    'fuel_volume': float(vol_val) if vol_val and vol_val != '' else 0
                 }
     
     # Merge all data by date (use revenue dates as primary)
@@ -215,7 +219,7 @@ def get_trend_data(days=30):
     for date_val in sorted(revenue_by_date.keys(), reverse=True):
         revenue = revenue_by_date.get(date_val, 0)
         costs = costs_by_date.get(date_val, 0)
-        logistics = logistics_by_date.get(date_val, {'fuel_price': 0, 'shipment_count': 0})
+        logistics = logistics_by_date.get(date_val, {'fuel_price': 0, 'shipment_count': 0, 'fuel_volume': 0})
         
         trends.append({
             'date': date_val,
@@ -223,7 +227,8 @@ def get_trend_data(days=30):
             'costs': costs,
             'profit': revenue - costs,
             'avg_fuel_price': logistics['fuel_price'],
-            'shipment_count': logistics['shipment_count']
+            'shipment_count': logistics['shipment_count'],
+            'fuel_volume': logistics['fuel_volume']
         })
     
     return create_response(200, {'trends': trends})
@@ -251,8 +256,12 @@ def get_cost_analysis(days=30):
         for row in result['ResultSet']['Rows'][1:]:  # Skip header row
             if len(row['Data']) >= 6:  # Ensure we have enough columns
                 try:
+                    region = row['Data'][0]['VarCharValue']
+                    route_id = row['Data'][1]['VarCharValue']
                     cost_analysis.append({
-                        'route': f"{row['Data'][0]['VarCharValue']} - {row['Data'][1]['VarCharValue']}",
+                        'region': region,
+                        'route_id': route_id,
+                        'route': f"{region} - {route_id}",
                         'avg_cost': float(row['Data'][2]['VarCharValue']) if row['Data'][2]['VarCharValue'] else 0,
                         'avg_delay': float(row['Data'][3]['VarCharValue']) if row['Data'][3]['VarCharValue'] else 0,
                         'avg_fuel_price': float(row['Data'][4]['VarCharValue']) if row['Data'][4]['VarCharValue'] else 0,
@@ -820,14 +829,23 @@ def get_product_performance(days=30):
         return create_response(200, {'products': []})
 
 def get_regional_performance(days=30):
-    """Get real regional distribution"""
-    query = """
+    """Get real regional distribution filtered by most recent days in dataset"""
+    # First get the distinct dates to determine the date range
+    # Then aggregate by region for those dates
+    query = f"""
+        WITH recent_dates AS (
+            SELECT DISTINCT date
+            FROM insights_grid_db.sales
+            ORDER BY date DESC
+            LIMIT {min(days, 365)}
+        )
         SELECT 
-            region,
-            COUNT(DISTINCT order_id) as order_count,
-            SUM(revenue) as total_revenue
-        FROM insights_grid_db.sales
-        GROUP BY region
+            s.region,
+            COUNT(DISTINCT s.order_id) as order_count,
+            SUM(s.revenue) as total_revenue
+        FROM insights_grid_db.sales s
+        INNER JOIN recent_dates rd ON s.date = rd.date
+        GROUP BY s.region
         ORDER BY total_revenue DESC
     """
     
@@ -852,6 +870,90 @@ def get_regional_performance(days=30):
     except Exception as e:
         print(f"Error getting regional performance: {str(e)}")
         return create_response(200, {'regions': []})
+
+def get_budget_vs_spent(days=365):
+    """Get quarterly budget allocated vs actual spent with department breakdown"""
+    query = """
+        SELECT 
+            date,
+            department,
+            SUM(budget_allocated) as total_budget,
+            SUM(amount) as total_spent
+        FROM insights_grid_db.finance
+        GROUP BY date, department
+        ORDER BY date DESC
+    """
+    
+    try:
+        result = execute_athena_query(query)
+        
+        # Process data by quarter and department
+        from datetime import datetime
+        current_year = datetime.now().year
+        
+        quarterly_data = {}
+        
+        for row in result['ResultSet']['Rows'][1:]:  # Skip header
+            if len(row['Data']) >= 4:
+                date_str = row['Data'][0].get('VarCharValue', '')
+                department = row['Data'][1].get('VarCharValue', '')
+                budget = float(row['Data'][2].get('VarCharValue', '0')) if row['Data'][2].get('VarCharValue') else 0
+                spent = float(row['Data'][3].get('VarCharValue', '0')) if row['Data'][3].get('VarCharValue') else 0
+                
+                if date_str and department:
+                    try:
+                        date_obj = datetime.strptime(date_str, '%Y-%m-%d')
+                        year = date_obj.year
+                        
+                        # Only process current year data
+                        if year == current_year:
+                            month = date_obj.month
+                            quarter = f'Q{((month - 1) // 3) + 1}'
+                            
+                            if quarter not in quarterly_data:
+                                quarterly_data[quarter] = {
+                                    'quarter': quarter,
+                                    'total_budget': 0,
+                                    'total_spent': 0,
+                                    'departments': {}
+                                }
+                            
+                            quarterly_data[quarter]['total_budget'] += budget
+                            quarterly_data[quarter]['total_spent'] += spent
+                            
+                            if department not in quarterly_data[quarter]['departments']:
+                                quarterly_data[quarter]['departments'][department] = {
+                                    'budget': 0,
+                                    'spent': 0
+                                }
+                            
+                            quarterly_data[quarter]['departments'][department]['budget'] += budget
+                            quarterly_data[quarter]['departments'][department]['spent'] += spent
+                    except Exception as e:
+                        print(f"Error parsing date {date_str}: {str(e)}")
+                        continue
+        
+        # Convert to list and ensure all quarters are present
+        quarters = ['Q1', 'Q2', 'Q3', 'Q4']
+        result_data = []
+        
+        for q in quarters:
+            if q in quarterly_data:
+                result_data.append(quarterly_data[q])
+            else:
+                result_data.append({
+                    'quarter': q,
+                    'total_budget': 0,
+                    'total_spent': 0,
+                    'departments': {}
+                })
+        
+        return create_response(200, {'quarterly_budget': result_data})
+    except Exception as e:
+        print(f"Error getting budget vs spent: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        return create_response(200, {'quarterly_budget': []})
 
 def store_query_in_session(session_id, query):
     """No longer needed - stateless architecture"""

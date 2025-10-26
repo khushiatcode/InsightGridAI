@@ -12,7 +12,12 @@ import {
   PieChart,
   Pie,
   Cell,
-  Legend
+  Legend,
+  RadarChart,
+  Radar,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis
 } from 'recharts';
 import { 
   MessageCircle, 
@@ -39,17 +44,49 @@ interface OverviewData {
   total_orders?: number;
 }
 
+interface QuarterlyData {
+  quarter: string;
+  revenue: number;
+  costs: number;
+}
+
+interface FuelPieData {
+  name: string;
+  volume: number;
+  avgPrice: number;
+}
+
+interface BudgetData {
+  quarter: string;
+  total_budget: number;
+  total_spent: number;
+  departments: {
+    [key: string]: {
+      budget: number;
+      spent: number;
+    };
+  };
+}
+
+interface QuarterlyShipmentData {
+  quarter: string;
+  shipment_count: number;
+}
+
 function App() {
   const [activeTab, setActiveTab] = useState('overview');
   const [overviewData, setOverviewData] = useState<OverviewData | null>(null);
   const [trendData, setTrendData] = useState([]);
-  const [costAnalysis, setCostAnalysis] = useState([]);
+  const [quarterlyData, setQuarterlyData] = useState<QuarterlyData[]>([]);
+  const [quarterlyShipmentData, setQuarterlyShipmentData] = useState<QuarterlyShipmentData[]>([]);
+  const [fuelPieData, setFuelPieData] = useState<FuelPieData[]>([]);
+  const [budgetData, setBudgetData] = useState<BudgetData[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchOverviewData();
     fetchTrendData();
-    fetchCostAnalysis();
+    fetchBudgetData();
   }, []);
 
   const fetchOverviewData = async () => {
@@ -64,25 +101,180 @@ function App() {
     }
   };
 
+  const processQuarterlyData = (trends: any[]): QuarterlyData[] => {
+    if (!trends || trends.length === 0) return [];
+    
+    // Parse dates and group by quarter for current year
+    const dataByQuarter: { [key: string]: { revenue: number[]; costs: number[] } } = {};
+    const currentYear = new Date().getFullYear();
+    
+    trends.forEach((item: any) => {
+      if (item.date && item.revenue !== undefined && item.costs !== undefined) {
+        const date = new Date(item.date);
+        const year = date.getFullYear();
+        
+        // Only process current year data
+        if (year === currentYear) {
+          const month = date.getMonth();
+          const quarter = Math.floor(month / 3) + 1;
+          const key = `Q${quarter}`;
+          
+          if (!dataByQuarter[key]) {
+            dataByQuarter[key] = { revenue: [], costs: [] };
+          }
+          dataByQuarter[key].revenue.push(item.revenue);
+          dataByQuarter[key].costs.push(item.costs);
+        }
+      }
+    });
+    
+    // Build quarterly comparison data with revenue vs costs
+    const quarterlyComparison = [];
+    for (let q = 1; q <= 4; q++) {
+      const key = `Q${q}`;
+      const data = dataByQuarter[key];
+      
+      const avgRevenue = data && data.revenue.length > 0
+        ? Math.round(data.revenue.reduce((sum, val) => sum + val, 0) / data.revenue.length)
+        : 0;
+        
+      const avgCosts = data && data.costs.length > 0
+        ? Math.round(data.costs.reduce((sum, val) => sum + val, 0) / data.costs.length)
+        : 0;
+      
+      quarterlyComparison.push({
+        quarter: key,
+        revenue: avgRevenue,
+        costs: avgCosts
+      });
+    }
+    
+    return quarterlyComparison;
+  };
+
+  const processQuarterlyShipmentData = (trends: any[]): QuarterlyShipmentData[] => {
+    if (!trends || trends.length === 0) return [];
+    
+    const dataByQuarter: { [key: string]: number[] } = {};
+    const currentYear = new Date().getFullYear();
+    
+    trends.forEach((item: any) => {
+      if (item.date && item.shipment_count !== undefined) {
+        const date = new Date(item.date);
+        const year = date.getFullYear();
+        
+        if (year === currentYear) {
+          const month = date.getMonth();
+          const quarter = Math.floor(month / 3) + 1;
+          const key = `Q${quarter}`;
+          
+          if (!dataByQuarter[key]) {
+            dataByQuarter[key] = [];
+          }
+          dataByQuarter[key].push(item.shipment_count || 0);
+        }
+      }
+    });
+    
+    const quarterlyShipment = [];
+    for (let q = 1; q <= 4; q++) {
+      const key = `Q${q}`;
+      const data = dataByQuarter[key];
+      
+      const totalShipments = data && data.length > 0
+        ? Math.round(data.reduce((sum, val) => sum + val, 0))
+        : 0;
+      
+      quarterlyShipment.push({
+        quarter: key,
+        shipment_count: totalShipments
+      });
+    }
+    
+    return quarterlyShipment;
+  };
+
+  const processFuelPieData = (trends: any[]): FuelPieData[] => {
+    if (!trends || trends.length === 0) return [];
+    
+    const dataByQuarter: { [key: string]: { volume: number[]; price: number[] } } = {};
+    const currentYear = new Date().getFullYear();
+    
+    trends.forEach((item: any) => {
+      if (item.date && item.fuel_volume !== undefined && item.avg_fuel_price !== undefined) {
+        const date = new Date(item.date);
+        const year = date.getFullYear();
+        
+        if (year === currentYear) {
+          const month = date.getMonth();
+          const quarter = Math.floor(month / 3) + 1;
+          const key = `Q${quarter}`;
+          
+          if (!dataByQuarter[key]) {
+            dataByQuarter[key] = { volume: [], price: [] };
+          }
+          dataByQuarter[key].volume.push(item.fuel_volume || 0);
+          dataByQuarter[key].price.push(item.avg_fuel_price || 0);
+        }
+      }
+    });
+    
+    const pieData = [];
+    for (let q = 1; q <= 4; q++) {
+      const key = `Q${q}`;
+      const data = dataByQuarter[key];
+      
+      const totalVolume = data && data.volume.length > 0
+        ? Math.round(data.volume.reduce((sum, val) => sum + val, 0))
+        : 0;
+        
+      const avgPrice = data && data.price.length > 0
+        ? parseFloat((data.price.reduce((sum, val) => sum + val, 0) / data.price.length).toFixed(2))
+        : 0;
+      
+      pieData.push({
+        name: key,
+        volume: totalVolume,
+        avgPrice: avgPrice
+      });
+    }
+    
+    return pieData;
+  };
+
   const fetchTrendData = async () => {
     try {
-      const response = await fetch('https://h3qy1xq5kh.execute-api.us-east-1.amazonaws.com/prod/api/data?type=trends');
+      const response = await fetch('https://h3qy1xq5kh.execute-api.us-east-1.amazonaws.com/prod/api/data?type=trends&days=730');
       const data = await response.json();
-      setTrendData(data.trends || []);
+      const trends = data.trends || [];
+      setTrendData(trends);
+      
+      // Process quarterly data for the Revenue Trends chart
+      const quarterly = processQuarterlyData(trends);
+      setQuarterlyData(quarterly);
+      
+      // Process quarterly shipment data
+      const quarterlyShipments = processQuarterlyShipmentData(trends);
+      setQuarterlyShipmentData(quarterlyShipments);
+      
+      // Process fuel data for pie chart
+      const fuelPie = processFuelPieData(trends);
+      setFuelPieData(fuelPie);
     } catch (error) {
       console.error('Error fetching trend data:', error);
     }
   };
 
-  const fetchCostAnalysis = async () => {
+  const fetchBudgetData = async () => {
     try {
-      const response = await fetch('https://h3qy1xq5kh.execute-api.us-east-1.amazonaws.com/prod/api/data?type=cost-analysis');
+      const response = await fetch('https://h3qy1xq5kh.execute-api.us-east-1.amazonaws.com/prod/api/data?type=budget-vs-spent');
       const data = await response.json();
-      setCostAnalysis(data.cost_analysis || []);
+      setBudgetData(data.quarterly_budget || []);
     } catch (error) {
-      console.error('Error fetching cost analysis:', error);
+      console.error('Error fetching budget data:', error);
     }
   };
+
 
   const tabs = [
     { id: 'overview', label: 'Overview', icon: TrendingUp },
@@ -147,15 +339,11 @@ function App() {
         <div className="bg-white rounded-lg p-6 card-shadow">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Revenue Trends</h3>
           <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={trendData}>
+            <BarChart data={quarterlyData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
               <XAxis 
-                dataKey="date" 
-                angle={-45} 
-                textAnchor="end" 
-                height={80}
+                dataKey="quarter" 
                 tick={{ fontSize: 12 }}
-                interval="preserveStartEnd"
               />
               <YAxis 
                 tick={{ fontSize: 12 }}
@@ -166,60 +354,7 @@ function App() {
                   `$${value.toLocaleString()}`, 
                   name === 'revenue' ? 'Revenue' : 'Costs'
                 ]}
-                labelFormatter={(label) => `Date: ${label}`}
-                contentStyle={{ 
-                  backgroundColor: '#fff', 
-                  border: '1px solid #e5e7eb',
-                  borderRadius: '8px',
-                  padding: '12px'
-                }}
-              />
-              <Legend 
-                verticalAlign="top" 
-                height={36}
-                iconType="line"
-              />
-              <Line 
-                type="monotone" 
-                dataKey="revenue" 
-                stroke="#10B981" 
-                strokeWidth={2} 
-                dot={{ r: 3 }}
-                activeDot={{ r: 5 }}
-                name="Revenue"
-              />
-              <Line 
-                type="monotone" 
-                dataKey="costs" 
-                stroke="#EF4444" 
-                strokeWidth={2}
-                dot={{ r: 3 }}
-                activeDot={{ r: 5 }}
-                name="Costs"
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-
-        <div className="bg-white rounded-lg p-6 card-shadow">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Cost Analysis by Route</h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={costAnalysis.slice(0, 5)}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-              <XAxis 
-                dataKey="route" 
-                angle={-20} 
-                textAnchor="end" 
-                height={80}
-                tick={{ fontSize: 11 }}
-              />
-              <YAxis 
-                tick={{ fontSize: 12 }}
-                tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
-              />
-              <Tooltip 
-                formatter={(value: number) => [`$${value.toLocaleString()}`, 'Avg Cost']}
-                labelFormatter={(label) => `Route: ${label}`}
+                labelFormatter={(label) => `Quarter: ${label} (${new Date().getFullYear()})`}
                 contentStyle={{ 
                   backgroundColor: '#fff', 
                   border: '1px solid #e5e7eb',
@@ -228,39 +363,87 @@ function App() {
                 }}
                 cursor={{ fill: 'rgba(59, 130, 246, 0.1)' }}
               />
+              <Legend 
+                verticalAlign="top" 
+                height={36}
+                formatter={(value) => value === 'revenue' ? 'Revenue' : 'Costs'}
+              />
               <Bar 
-                dataKey="avg_cost" 
+                dataKey="revenue" 
                 fill="#3B82F6" 
                 radius={[8, 8, 0, 0]}
-                name="Average Cost"
+                name="revenue"
+              />
+              <Bar 
+                dataKey="costs" 
+                fill="rgb(245, 158, 11)" 
+                radius={[8, 8, 0, 0]}
+                name="costs"
               />
             </BarChart>
           </ResponsiveContainer>
+        </div>
+
+        <div className="bg-white rounded-lg p-6 card-shadow">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Quarterly Fuel Volume Distribution</h3>
+          <ResponsiveContainer width="100%" height={300}>
+            <PieChart>
+              <Pie
+                data={fuelPieData}
+                cx="50%"
+                cy="50%"
+                labelLine={true}
+                label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(1)}%`}
+                outerRadius={85}
+                fill="#8884d8"
+                dataKey="volume"
+                nameKey="name"
+              >
+                {fuelPieData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+              <Tooltip 
+                formatter={(value: number, name: string, props: any) => {
+                  const avgPrice = props.payload.avgPrice;
+                  return [
+                    `${value.toLocaleString()} L`,
+                    `Fuel Volume (Avg Price: $${avgPrice.toFixed(2)}/L)`
+                  ];
+                }}
+                contentStyle={{ 
+                  backgroundColor: '#fff', 
+                  border: '1px solid #e5e7eb',
+                  borderRadius: '8px',
+                  padding: '12px'
+                }}
+              />
+              <Legend 
+                formatter={(value) => `${value} Fuel Volume`}
+              />
+            </PieChart>
+          </ResponsiveContainer>
+          <p className="text-xs text-gray-500 mt-2 text-center">Hover over each section to see the average fuel price</p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white rounded-lg p-6 card-shadow">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Fuel Price Impact</h3>
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Quarterly Shipment Volume ({new Date().getFullYear()})</h3>
           <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={trendData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-              <XAxis 
-                dataKey="date" 
-                angle={-45} 
-                textAnchor="end" 
-                height={80}
-                tick={{ fontSize: 12 }}
-                interval="preserveStartEnd"
+            <RadarChart data={quarterlyShipmentData}>
+              <PolarGrid stroke="#e5e7eb" />
+              <PolarAngleAxis 
+                dataKey="quarter"
+                tick={{ fontSize: 12, fill: '#6b7280' }}
               />
-              <YAxis 
-                tick={{ fontSize: 12 }}
-                tickFormatter={(value) => `$${value.toFixed(2)}`}
-                domain={['dataMin - 0.1', 'dataMax + 0.1']}
+              <PolarRadiusAxis 
+                angle={90}
+                tick={{ fontSize: 10, fill: '#9ca3af' }}
               />
               <Tooltip 
-                formatter={(value: number) => [`$${value.toFixed(2)}/L`, 'Fuel Price']}
-                labelFormatter={(label) => `Date: ${label}`}
+                formatter={(value: number) => [value.toLocaleString(), 'Total Shipments']}
+                labelFormatter={(label) => `Quarter: ${label} (${new Date().getFullYear()})`}
                 contentStyle={{ 
                   backgroundColor: '#fff', 
                   border: '1px solid #e5e7eb',
@@ -271,60 +454,98 @@ function App() {
               <Legend 
                 verticalAlign="top" 
                 height={36}
-                iconType="line"
+                formatter={() => 'Total Shipments'}
               />
-              <Line 
-                type="monotone" 
-                dataKey="avg_fuel_price" 
-                stroke="#F59E0B" 
+              <Radar 
+                dataKey="shipment_count" 
+                stroke="#8B5CF6"
+                fill="#8B5CF6"
+                fillOpacity={0.6}
                 strokeWidth={2}
-                dot={{ r: 3 }}
-                activeDot={{ r: 5 }}
-                name="Avg Fuel Price ($/L)"
+                name="Total Shipments"
               />
-            </LineChart>
+            </RadarChart>
           </ResponsiveContainer>
         </div>
 
         <div className="bg-white rounded-lg p-6 card-shadow">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Shipment Volume</h3>
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Quarterly Budget vs Actual Spending ({new Date().getFullYear()})</h3>
           <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={trendData}>
+            <BarChart data={budgetData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
               <XAxis 
-                dataKey="date" 
-                angle={-45} 
-                textAnchor="end" 
-                height={80}
+                dataKey="quarter" 
                 tick={{ fontSize: 12 }}
-                interval="preserveStartEnd"
               />
               <YAxis 
                 tick={{ fontSize: 12 }}
+                tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
               />
               <Tooltip 
-                formatter={(value: number) => [value, 'Shipment Count']}
-                labelFormatter={(label) => `Date: ${label}`}
-                contentStyle={{ 
-                  backgroundColor: '#fff', 
-                  border: '1px solid #e5e7eb',
-                  borderRadius: '8px',
-                  padding: '12px'
+                content={({ active, payload }) => {
+                  if (active && payload && payload.length) {
+                    const data = payload[0].payload;
+                    return (
+                      <div className="bg-white p-4 border border-gray-300 rounded-lg shadow-lg">
+                        <p className="font-semibold text-gray-900 mb-2">{data.quarter} ({new Date().getFullYear()})</p>
+                        <div className="space-y-1 mb-3">
+                          <p className="text-sm">
+                            <span className="font-medium text-blue-600">Budget Allocated:</span>{' '}
+                            <span className="font-semibold">${data.total_budget.toLocaleString()}</span>
+                          </p>
+                          <p className="text-sm">
+                            <span className="font-medium text-orange-600">Amount Spent:</span>{' '}
+                            <span className="font-semibold">${data.total_spent.toLocaleString()}</span>
+                          </p>
+                          <p className="text-sm">
+                            <span className="font-medium text-gray-600">Variance:</span>{' '}
+                            <span className={`font-semibold ${data.total_spent > data.total_budget ? 'text-red-600' : 'text-green-600'}`}>
+                              ${Math.abs(data.total_budget - data.total_spent).toLocaleString()}
+                              {data.total_spent > data.total_budget ? ' over' : ' under'}
+                            </span>
+                          </p>
+                        </div>
+                        {data.departments && Object.keys(data.departments).length > 0 && (
+                          <div className="border-t pt-2">
+                            <p className="font-medium text-gray-700 text-xs mb-1">Department Breakdown:</p>
+                            <div className="space-y-1">
+                              {Object.entries(data.departments).map(([dept, values]: [string, any]) => (
+                                <div key={dept} className="text-xs">
+                                  <span className="font-medium text-gray-600">{dept}:</span>{' '}
+                                  <span className="text-gray-800">
+                                    ${values.spent.toLocaleString()} / ${values.budget.toLocaleString()}
+                                  </span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  }
+                  return null;
                 }}
-                cursor={{ fill: 'rgba(139, 92, 246, 0.1)' }}
               />
               <Legend 
                 verticalAlign="top" 
                 height={36}
+                formatter={(value) => value === 'total_budget' ? 'Budget Allocated' : 'Amount Spent'}
               />
               <Bar 
-                dataKey="shipment_count" 
-                fill="#8B5CF6" 
+                dataKey="total_budget" 
+                fill="#3B82F6" 
                 radius={[8, 8, 0, 0]}
-                name="Active Shipments"
+                name="total_budget"
+              />
+              <Bar 
+                dataKey="total_spent" 
+                fill="rgb(245, 158, 11)" 
+                radius={[8, 8, 0, 0]}
+                name="total_spent"
               />
             </BarChart>
           </ResponsiveContainer>
+          <p className="text-xs text-gray-500 mt-2 text-center">Hover over bars to see department-wise spending breakdown</p>
         </div>
       </div>
     </div>

@@ -16,19 +16,14 @@ SALES_BUCKET = os.environ['SALES_BUCKET']
 RESULTS_BUCKET = os.environ['RESULTS_BUCKET']
 WORKGROUP = os.environ['WORKGROUP']
 
-# Airia credentials (for Chat with Data widget)
-AIRIA_API_KEY = os.environ.get('AIRIA_API_KEY', 'ak-Mzc2MjA0Mjk5NXwxNzYxNDI1NDc5MzU1fHRpLVUyRnVkR0VnUTJ4aGNtRWdWVzVwZG1WeWMybDBlUzFQY0dWdUlGSmxaMmx6ZEhKaGRHbHZiaTFRY205bVpYTnphVzl1WVd4Zk5EaGtaRGd3WWpZdFpXSXpZaTAwWmpOakxXSmpObU10WkRWbU5qTmxabVJoWmpCbHwxfDE2ODU5MTYyNDEg')
-AIRIA_USER_ID = os.environ.get('AIRIA_USER_ID', '019a1ca8-be4d-7f6a-8bf4-63d7ff1db5b5')
-AIRIA_PIPELINE_URL = "https://api.airia.ai/v2/PipelineExecution/70ef9a9d-5eb5-44e8-873b-e8060f024791"
-
-# Gemini credentials (for AI Chat tab)
-GEMINI_API_KEY = os.environ.get('GEMINI_API_KEY', 'AIzaSyCEKH3unxJVm9SnfBzs57C801jC5iiRVYU')
-GEMINI_MODEL = "gemini-2.5-flash"
-GEMINI_API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent"
+# Airia credentials for AI Chat tab
+AIRIA_API_KEY = os.environ.get('AIRIA_API_KEY', '')
+AIRIA_USER_ID = os.environ.get('AIRIA_USER_ID', '')
+AIRIA_CHAT_PIPELINE_URL = "https://api.airia.ai/v2/PipelineExecution/0e2a6599-9c5f-40ac-9a39-456a53b7d935"
 
 def handler(event, context):
     """
-    Lambda function for AI Chat tab - uses Gemini with prompts/restrictions
+    Lambda function for AI Chat tab - uses Airia pipeline
     """
     # Handle CORS preflight
     if event.get('httpMethod') == 'OPTIONS':
@@ -41,8 +36,8 @@ def handler(event, context):
         if not message:
             return create_response(400, {'error': 'Message is required'})
         
-        # AI Chat tab: Use Gemini with enhanced prompts
-        response = generate_gemini_response(message)
+        # AI Chat tab: Use Airia pipeline for intelligent responses
+        response = call_airia_chat(message)
         
         return create_response(200, {
             'message': message,
@@ -52,7 +47,74 @@ def handler(event, context):
         
     except Exception as e:
         print(f"Error: {str(e)}")
-        return create_response(500, {'error': str(e)})
+        import traceback
+        traceback.print_exc()
+        return create_response(500, {'error': str(e), 'response': 'Sorry, I encountered an error. Please try again.'})
+
+def call_airia_chat(message):
+    """Call Airia Chat pipeline for AI Chat tab with 90 second timeout"""
+    try:
+        print(f"Calling Airia Chat Pipeline with message: {message}")
+        
+        payload = json.dumps({
+            "userId": AIRIA_USER_ID,
+            "userInput": message,
+            "asyncOutput": False
+        })
+        
+        headers = {
+            "X-API-KEY": AIRIA_API_KEY,
+            "Content-Type": "application/json"
+        }
+        
+        response = requests.post(AIRIA_CHAT_PIPELINE_URL, headers=headers, data=payload, timeout=90)
+        
+        print(f"Airia response status: {response.status_code}")
+        
+        if response.status_code == 200:
+            response_data = response.json()
+            print(f"✅ Success! Response: {json.dumps(response_data)[:200]}")
+            
+            # Try to extract response from various possible keys
+            ai_response = (
+                response_data.get('output') or 
+                response_data.get('result') or 
+                response_data.get('response') or
+                response_data.get('answer') or
+                ''
+            )
+            
+            if ai_response:
+                return ai_response
+            else:
+                print(f"⚠️ No output in response: {response_data}")
+                return "I received a response but couldn't extract the content. Please try rephrasing your question."
+        else:
+            error_text = response.text[:500] if response.text else 'Unknown error'
+            print(f"❌ Airia API error {response.status_code}: {error_text}")
+            
+            # More informative error messages
+            if response.status_code == 500:
+                return "The AI service encountered an internal error. This is usually temporary - please try asking your question again or rephrase it differently."
+            elif response.status_code == 429:
+                return "Too many requests. Please wait a moment and try again."
+            elif response.status_code == 401 or response.status_code == 403:
+                return "Authentication error with the AI service. Please contact support."
+            else:
+                return f"AI service error (code {response.status_code}). Please try again later."
+            
+    except requests.exceptions.Timeout:
+        print("⏱️ Request timed out after 90 seconds")
+        return "⏱️ Your request took more than 90 seconds. The AI service is responding slowly - please try a simpler question or try again in a moment."
+    except requests.exceptions.RequestException as e:
+        print(f"🔌 Connection error: {str(e)}")
+        return "Unable to connect to the AI service. Please check your network or try again later."
+    except Exception as e:
+        print(f"❌ Unexpected error: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        return "I encountered an error. Please try again later."
+
 
 def get_business_context():
     """Fetch current business metrics to provide context to AI"""
@@ -119,7 +181,7 @@ A:"""
             }
         }
         
-        response = requests.post(url, json=payload, timeout=15)
+        response = requests.post(url, json=payload, timeout=45)  # Increased from 15s to 45s
         
         if response.status_code == 200:
             data = response.json()

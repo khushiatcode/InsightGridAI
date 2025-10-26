@@ -5,13 +5,19 @@ package-lock.json
 # Build outputs
 build/
 dist/
-*.js
-*.d.ts
 *.js.map
+frontend/build/
+
+# TypeScript compiled files (but keep source .ts files in bin/)
+infrastructure/bin/*.js
+infrastructure/bin/*.d.ts
+infrastructure/lib/*.js
+infrastructure/lib/*.d.ts
 
 # CDK
 cdk.out/
 .cdk.staging/
+infrastructure/cdk.out/
 
 # Python
 __pycache__/
@@ -24,17 +30,47 @@ env/
 ENV/
 *.egg-info/
 .eggs/
+pip-log.txt
+pip-delete-this-directory.txt
 
-# Lambda deployment packages
+# Lambda - Deployment packages and dependencies
 *.zip
+lambda-*.zip
+**/lambda/**/*.zip
 
-# Deployment scripts
+# Lambda - Python dependencies (can be reinstalled)
+**/lambda/**/requests/
+**/lambda/**/requests-*/
+**/lambda/**/urllib3/
+**/lambda/**/urllib3-*/
+**/lambda/**/certifi/
+**/lambda/**/certifi-*/
+**/lambda/**/charset_normalizer/
+**/lambda/**/charset_normalizer-*/
+**/lambda/**/idna/
+**/lambda/**/idna-*/
+**/lambda/**/bin/
+**/lambda/**/*dist-info/
+**/lambda/**/package/
+
+# Lambda - Keep only source files (index.py, requirements.txt, etc.)
+# Everything else can be rebuilt
+
+# AWS CDK Assets
+infrastructure/cdk.out/asset.*/
+
+# Deployment and test scripts (temporary/personal)
 deploy.sh
 simple-deploy.sh
-*.deploy.sh
+fix-and-deploy.sh
+*deploy*.sh
+test-*.sh
+comprehensive-test.sh
 
 # AWS
 .aws-sam/
+samconfig.toml
+AWSCLIV2.pkg
 
 # Environment variables
 .env
@@ -58,11 +94,14 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
+deploy.log
 
 # Testing
 coverage/
 .nyc_output/
 .cache/
+*.test.js
+*.spec.js
 
 # Misc
 *.pkg
@@ -79,4 +118,5 @@ Thumbs.db
 *.temp
 .temp/
 tmp/
+response.json
 

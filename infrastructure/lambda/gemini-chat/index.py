@@ -2,7 +2,8 @@ import json
 import os
 import requests
 
-GEMINI_API_KEY = os.environ.get('GEMINI_API_KEY', 'AIzaSyCEKH3unxJVm9SnfBzs57C801jC5iiRVYU')
+# SECURITY: Never commit real credentials! Set as environment variable
+GEMINI_API_KEY = os.environ.get('GEMINI_API_KEY', '')
 GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent"
 
 def handler(event, context):

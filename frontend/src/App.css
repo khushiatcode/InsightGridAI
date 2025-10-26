@@ -31,3 +31,17 @@
     transform: rotate(360deg);
   }
 }
+
+/* Formatted chat message styling */
+.formatted-message {
+  line-height: 1.6;
+}
+
+.formatted-message strong {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.formatted-message br {
+  margin: 0.25rem 0;
+}

@@ -12,6 +12,12 @@ const SimulationPanel: React.FC = () => {
   const [activeSimulation, setActiveSimulation] = useState<string>('');
   const [simulationResults, setSimulationResults] = useState<SimulationResult | null>(null);
   const [runningSimulations, setRunningSimulations] = useState<Set<string>>(new Set());
+
+  // Clear results when switching between simulation cards
+  const handleSimulationChange = (simulationId: string) => {
+    setActiveSimulation(simulationId);
+    setSimulationResults(null); // Clear previous results
+  };
   const [parameters, setParameters] = useState({
     fuel_increase_percent: 10,
     time_horizon_months: 12,
@@ -468,7 +474,7 @@ const SimulationPanel: React.FC = () => {
         className={`bg-white rounded-lg p-6 card-shadow cursor-pointer transition-all ${
           isActive ? 'ring-2 ring-blue-500' : 'hover:shadow-lg'
         }`}
-        onClick={() => setActiveSimulation(simulation.id)}
+        onClick={() => handleSimulationChange(simulation.id)}
       >
         <div className="flex items-center">
           <div className={`p-3 rounded-lg bg-${simulation.color}-100`}>
@@ -493,7 +499,7 @@ const SimulationPanel: React.FC = () => {
       <div className="mt-8 bg-white rounded-lg p-6 card-shadow">
         <h3 className="text-xl font-semibold text-gray-900 mb-6">Simulation Results</h3>
         
-        {(result.scenario === 'Fuel Price Increase' || result.scenario?.includes('ML-Enhanced')) && (
+        {(result.scenario === 'Fuel Price Increase' || result.scenario?.includes('Fuel Price')) && (
           <div className="space-y-6">
             {/* ML Model Indicator */}
             {result.model_info && (
@@ -506,8 +512,8 @@ const SimulationPanel: React.FC = () => {
                         {result.model_type || 'ML-Enhanced Prediction'}
                       </p>
                       <p className="text-xs text-purple-700">
-                        {result.model_info.trend_detected && '📈 Trend Analysis'} 
-                        {result.model_info.seasonality_detected && ' • 📅 Seasonality Detection'}
+                        {result.model_info.trend_detected && `📈 Trend: ${result.model_info.trend_direction}`}
+                        {result.model_info.seasonality_detected && ` • 📅 Seasonal Variation: ${result.model_info.seasonal_variation}%`}
                         {' • '}🎯 Confidence: {result.model_info.confidence}%
                       </p>
                     </div>
@@ -528,19 +534,17 @@ const SimulationPanel: React.FC = () => {
               </div>
               <div className="bg-gradient-to-br from-red-50 to-red-100 p-4 rounded-lg border border-red-200">
                 <p className="text-sm text-red-600 font-medium mb-1">Total Impact</p>
-                <p className="text-3xl font-bold text-red-900">${result.total_cost_impact?.toLocaleString()}</p>
+                <p className="text-3xl font-bold text-red-900">${Math.round(result.total_cost_impact || 0).toLocaleString()}</p>
                 <p className="text-xs text-red-600 mt-1">
-                  ~${(result.projected_monthly_impact || 0).toLocaleString()}/month
+                  ~${Math.round(result.projected_cost_increase || 0).toLocaleString()}/month
                 </p>
               </div>
-              <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg border border-green-200">
-                <p className="text-sm text-green-600 font-medium mb-1">Confidence</p>
-                <p className="text-3xl font-bold text-green-900">
-                  {result.model_info?.confidence || Math.round((result.confidence_score || 0) * 100)}%
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg border border-blue-200">
+                <p className="text-sm text-blue-600 font-medium mb-1">Current Monthly Cost</p>
+                <p className="text-3xl font-bold text-blue-900">
+                  ${Math.round(result.current_monthly_cost || 0).toLocaleString()}
                 </p>
-                <p className="text-xs text-green-600 mt-1">
-                  {result.trend_info?.direction || 'stable'} trend
-                </p>
+                <p className="text-xs text-blue-600 mt-1">baseline</p>
               </div>
             </div>
 
@@ -555,7 +559,7 @@ const SimulationPanel: React.FC = () => {
                       <div className="w-12 h-0.5 bg-red-500 mr-2"></div>
                       <div>
                         <p className="text-sm font-semibold text-gray-900">Monthly Cost (Red Line - Flat)</p>
-                        <p className="text-xs text-gray-600">Extra cost EACH month: ${result.projected_cost_increase?.toLocaleString()}/month</p>
+                        <p className="text-xs text-gray-600">Extra cost EACH month: ${Math.round(result.projected_cost_increase || 0).toLocaleString()}/month</p>
                       </div>
                     </div>
                     <div className="flex items-center">
@@ -569,9 +573,9 @@ const SimulationPanel: React.FC = () => {
                   <div className="mt-3 pt-3 border-t border-gray-300">
                     <p className="text-xs text-gray-700">
                       <strong>💡 Example:</strong> If fuel increases by {result.fuel_increase_percent}%, you'll pay an extra 
-                      <strong className="text-red-600"> ${result.projected_cost_increase?.toLocaleString()}</strong> each month.
+                      <strong className="text-red-600"> ${Math.round(result.projected_cost_increase || 0).toLocaleString()}</strong> each month.
                       By month {result.time_horizon_months}, your total extra cost will be 
-                      <strong className="text-amber-600"> ${result.total_cost_impact?.toLocaleString()}</strong>.
+                      <strong className="text-amber-600"> ${Math.round(result.total_cost_impact || 0).toLocaleString()}</strong>.
                     </p>
                   </div>
                 </div>
@@ -661,35 +665,84 @@ const SimulationPanel: React.FC = () => {
           </div>
         )}
 
-        {result.scenario === 'Demand Forecast' && (
+        {(result.scenario === 'Demand Forecast' || result.scenario?.includes('Demand Forecast')) && (
           <div className="space-y-6">
+            {/* ML Model Indicator */}
+            {result.model_info && (
+              <div className="bg-gradient-to-r from-purple-50 to-blue-50 p-4 rounded-lg border border-purple-200">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <span className="text-3xl">🤖</span>
+                    <div>
+                      <p className="text-sm font-semibold text-purple-900">
+                        {result.model_type || 'ML-Enhanced Forecast'}
+                      </p>
+                      <p className="text-xs text-purple-700">
+                        {result.model_info.trend_detected && '📈 Trend Analysis'}
+                        {result.model_info.seasonality_detected && ' • 📅 Seasonality Detection'}
+                        {' • '}🎯 Confidence: {result.model_info.confidence}%
+                      </p>
+                    </div>
+                  </div>
+                  <div className="text-xs text-purple-600 bg-white px-3 py-1 rounded-full">
+                    {result.model_info.data_points} data points
+                  </div>
+                </div>
+              </div>
+            )}
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-green-50 p-4 rounded-lg">
-                <p className="text-sm text-green-600 font-medium">Demand Increase</p>
-                <p className="text-2xl font-bold text-green-900">{result.demand_increase_percent}%</p>
+              <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg border border-green-200">
+                <p className="text-sm text-green-600 font-medium mb-1">Demand Increase</p>
+                <p className="text-3xl font-bold text-green-900">{result.demand_increase_percent}%</p>
+                <p className="text-xs text-green-600 mt-1">over {result.time_horizon_months} months</p>
               </div>
-              <div className="bg-blue-50 p-4 rounded-lg">
-                <p className="text-sm text-blue-600 font-medium">Revenue Impact</p>
-                <p className="text-2xl font-bold text-blue-900">${result.total_revenue_impact?.toLocaleString()}</p>
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg border border-blue-200">
+                <p className="text-sm text-blue-600 font-medium mb-1">Total Revenue Increase</p>
+                <p className="text-3xl font-bold text-blue-900">${Math.round(result.total_revenue_increase || 0).toLocaleString()}</p>
+                <p className="text-xs text-blue-600 mt-1">
+                  ~${Math.round(result.projected_revenue_increase || 0).toLocaleString()}/month
+                </p>
               </div>
-              <div className="bg-purple-50 p-4 rounded-lg">
-                <p className="text-sm text-purple-600 font-medium">Confidence</p>
-                <p className="text-2xl font-bold text-purple-900">{Math.round((result.confidence_score || 0) * 100)}%</p>
+              <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg border border-purple-200">
+                <p className="text-sm text-purple-600 font-medium mb-1">Current Revenue</p>
+                <p className="text-3xl font-bold text-purple-900">${Math.round(result.current_monthly_revenue || 0).toLocaleString()}</p>
+                <p className="text-xs text-purple-600 mt-1">baseline</p>
               </div>
             </div>
 
-            {result.monthly_forecast && (
+            {result.monthly_breakdown && (
               <div>
-                <h4 className="text-lg font-semibold text-gray-900 mb-4">Monthly Forecast</h4>
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">Revenue Projection</h4>
                 <ResponsiveContainer width="100%" height={300}>
-                  <BarChart data={result.monthly_forecast}>
+                  <LineChart data={result.monthly_breakdown}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="month" />
                     <YAxis />
-                    <Tooltip formatter={(value) => [`$${value.toLocaleString()}`, 'Revenue']} />
-                    <Bar dataKey="projected_revenue" fill="#10B981" />
-                  </BarChart>
+                    <Tooltip 
+                      formatter={(value: any, name: string) => {
+                        const label = name === 'current_revenue' ? 'Current Revenue' : 'Projected Revenue';
+                        return [`$${value.toLocaleString()}`, label];
+                      }}
+                    />
+                    <Line type="monotone" dataKey="current_revenue" stroke="#9CA3AF" strokeWidth={2} name="Current" strokeDasharray="5 5" />
+                    <Line type="monotone" dataKey="projected_revenue" stroke="#10B981" strokeWidth={2} name="Projected" />
+                  </LineChart>
                 </ResponsiveContainer>
+              </div>
+            )}
+
+            {result.capacity_requirements && (
+              <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                <h4 className="text-lg font-semibold text-yellow-900 mb-3">⚠️ Capacity Requirements</h4>
+                <ul className="space-y-2">
+                  {result.capacity_requirements.map((req: string, idx: number) => (
+                    <li key={idx} className="flex items-start">
+                      <span className="text-yellow-600 mr-2">•</span>
+                      <span className="text-sm text-yellow-800">{req}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             )}
           </div>
@@ -730,13 +783,13 @@ const SimulationPanel: React.FC = () => {
                 <div>
                   <p className="text-xs text-gray-600">Avg Delay</p>
                   <p className="text-lg font-semibold text-gray-900">
-                    {result.current_metrics?.avg_delay} hours
+                    {result.current_metrics?.avg_delay?.toFixed(2)} hours
                   </p>
                 </div>
                 <div>
                   <p className="text-xs text-gray-600">Avg Fuel Price</p>
                   <p className="text-lg font-semibold text-gray-900">
-                    ${result.current_metrics?.avg_fuel_price}/L
+                    ${result.current_metrics?.avg_fuel_price?.toFixed(2)}/L
                   </p>
                 </div>
               </div>
@@ -764,12 +817,33 @@ const SimulationPanel: React.FC = () => {
               <div>
                 <h4 className="text-lg font-semibold text-gray-900 mb-4">💡 Recommendations</h4>
                 <div className="space-y-2">
-                  {result.recommendations.map((rec: string, index: number) => (
-                    <div key={index} className="flex items-start bg-blue-50 p-3 rounded-lg border border-blue-200">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                      <span className="text-sm text-gray-700">{rec}</span>
-                    </div>
-                  ))}
+                  {result.recommendations.map((rec: any, index: number) => {
+                    // Handle both old (string) and new (object) format
+                    if (typeof rec === 'string') {
+                      return (
+                        <div key={index} className="flex items-start bg-blue-50 p-3 rounded-lg border border-blue-200">
+                          <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                          <span className="text-sm text-gray-700">{rec}</span>
+                        </div>
+                      );
+                    }
+                    
+                    // New structured format from ML
+                    const colorMap: any = {
+                      'warning': 'yellow',
+                      'info': 'blue',
+                      'action': 'green'
+                    };
+                    const color = colorMap[rec.type] || 'blue';
+                    
+                    return (
+                      <div key={index} className={`bg-${color}-50 p-4 rounded-lg border border-${color}-200`}>
+                        <p className={`font-semibold text-${color}-900 mb-1`}>{rec.title}</p>
+                        <p className={`text-sm text-${color}-800 mb-2`}>{rec.description}</p>
+                        <p className={`text-sm text-${color}-700 italic`}>→ {rec.action}</p>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             )}
@@ -785,7 +859,7 @@ const SimulationPanel: React.FC = () => {
               </div>
               <div className="bg-green-50 p-4 rounded-lg">
                 <p className="text-sm text-green-600 font-medium">Annual Savings</p>
-                <p className="text-2xl font-bold text-green-900">${result.net_annual_savings?.toLocaleString()}</p>
+                <p className="text-2xl font-bold text-green-900">${result.annual_net_savings?.toLocaleString()}</p>
               </div>
             </div>
 

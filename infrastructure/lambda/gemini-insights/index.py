@@ -28,6 +28,17 @@ def handler(event, context):
             # Generate AI insights based on recent data
             insights = generate_ai_insights()
             return create_response(200, {'insights': insights})
+        
+        elif method == 'POST':
+            # Handle chat messages
+            body = json.loads(event.get('body', '{}'))
+            message = body.get('message', '')
+            
+            if not message:
+                return create_response(400, {'error': 'Message is required'})
+            
+            response = generate_gemini_chat_response(message)
+            return create_response(200, {'response': response})
         else:
             return create_response(405, {'error': 'Method not allowed'})
             
@@ -323,6 +334,35 @@ def execute_athena_query(query):
         reason = response['QueryExecution']['Status'].get('StateChangeReason', 'Unknown error')
         raise Exception(f"Query failed: {reason}")
 
+def generate_gemini_chat_response(message):
+    """Generate chat response using Gemini"""
+    try:
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key={GEMINI_API_KEY}"
+        
+        payload = {
+            "contents": [{
+                "parts": [{
+                    "text": message
+                }]
+            }]
+        }
+        
+        response = requests.post(url, json=payload, timeout=15)
+        
+        if response.status_code == 200:
+            data = response.json()
+            if 'candidates' in data and len(data['candidates']) > 0:
+                candidate = data['candidates'][0]
+                if 'content' in candidate and 'parts' in candidate['content']:
+                    parts = candidate['content']['parts']
+                    if len(parts) > 0 and 'text' in parts[0]:
+                        return parts[0]['text']
+        
+        return "I'm having trouble generating a response. Please try again."
+    except Exception as e:
+        print(f"Error calling Gemini: {str(e)}")
+        return "I encountered an error. Please try again."
+
 def create_response(status_code, body):
     """Create API Gateway response"""
     return {
@@ -331,7 +371,7 @@ def create_response(status_code, body):
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
-            'Access-Control-Allow-Methods': 'GET,OPTIONS'
+            'Access-Control-Allow-Methods': 'GET,POST,OPTIONS'
         },
         'body': json.dumps(body)
     }

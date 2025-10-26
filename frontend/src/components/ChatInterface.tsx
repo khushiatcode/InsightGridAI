@@ -44,14 +44,14 @@ const ChatInterface: React.FC = () => {
     setIsLoading(true);
 
     try {
+      // Call Gemini-powered chat via bedrock endpoint
       const response = await fetch('https://h3qy1xq5kh.execute-api.us-east-1.amazonaws.com/prod/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          message: inputMessage,
-          sessionId: 'demo-session'
+          message: inputMessage
         }),
       });
 
@@ -84,6 +84,19 @@ const ChatInterface: React.FC = () => {
       e.preventDefault();
       sendMessage();
     }
+  };
+
+  const formatMessage = (content: string) => {
+    // Convert **bold** to <strong>
+    let formatted = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    
+    // Convert bullet points (• or -) to styled bullets
+    formatted = formatted.replace(/^[•\-]\s/gm, '<span class="text-blue-500">•</span> ');
+    
+    // Preserve line breaks
+    formatted = formatted.replace(/\n/g, '<br/>');
+    
+    return formatted;
   };
 
   const quickQuestions = [
@@ -128,7 +141,14 @@ const ChatInterface: React.FC = () => {
                       : 'bg-gray-100 text-gray-900'
                   }`}
                 >
-                  <p className="text-sm">{message.content}</p>
+                  {message.type === 'assistant' ? (
+                    <div 
+                      className="text-sm formatted-message"
+                      dangerouslySetInnerHTML={{ __html: formatMessage(message.content) }}
+                    />
+                  ) : (
+                    <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                  )}
                   <p className={`text-xs mt-1 ${
                     message.type === 'user' ? 'text-blue-100' : 'text-gray-500'
                   }`}>

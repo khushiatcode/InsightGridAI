@@ -27,6 +27,7 @@ import {
 import ChatInterface from './components/ChatInterface';
 import SimulationPanel from './components/SimulationPanel';
 import DataOverview from './components/DataOverview';
+import ChatWithData from './components/ChatWithData';
 import './App.css';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8'];
@@ -399,6 +400,9 @@ function App() {
           renderContent()
         )}
       </main>
+      
+      {/* Chat with Data widget - only show on Overview tab */}
+      {activeTab === 'overview' && <ChatWithData />}
     </div>
   );
 }
